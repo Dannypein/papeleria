@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration {
 			$table->string('type');
 			$table->string('unit');
 			$table->mediumText('details');
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 
