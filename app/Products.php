@@ -25,4 +25,18 @@ class products extends Model {
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+  public static function createFromCSV($row)
+  {
+    $data = [
+      'sku'       => data_get($row, 'clave'),
+      'name'      => array_get($row, 'descripcion'),
+      'brand'     => array_get($row, 'linea'),
+      'model'     => array_get($row, 'modelo'),
+      'size'      => array_get($row, 'talla'),
+      'available' => array_get($row, 'existencias'),
+    ];
+
+    return $data;
+  }
+
 }
