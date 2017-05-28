@@ -1,0 +1,8 @@
+ BD: ofimedia_papeleria
+ User: ofimedia_admin
+ Pass: OGBrCB4(wzZ4
+ ----------------------
+ Information FTP
+ IP: 199.168.190.146
+ Username: ofimedia
+ Password: aDm1K8o7w5
