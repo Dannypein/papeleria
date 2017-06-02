@@ -10,13 +10,22 @@
                 <div class="col-md-3">
                     <p class="lead list-group-item"><b>Acciones</b></p>
                     <div class="list-group">
-                        <a href="" class="list-group-item">Nuevo Usuario</a>
+                        <a href="{{route('nuevo')}}" class="list-group-item">Nuevo Usuario</a>
                     </div>
                 </div>
+                @if(\Session::has('alert'))
+                <div class="col-md-9">
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
+                        <strong>{{Session::get('alert')}}</strong>
+                    </div>
+                </div>
+                @endif
                 <div class="col-md-9">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4>Usuarios Registrados</h4>
+                        <a href="{{ url('/admin') }}"><button class="btn" style="float: left;">Regresar</button></a>
+                        <h4>Usuarios Registrados</h4>
                     </div>
                     <div class="panel-body table-responsive">
                         <table style="font-weight: bold;" class="table table-striped table-responsive">
@@ -38,7 +47,7 @@
                                     <td>{{$users->updated_at}}</td>
                                     <td>
                                         <a href="{{route('edit', [$users->id])}}"><button type="button" class="btn btn-info" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                        <a href=""><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                        <a href="/admin/usuarios/{{$users->id}}/delete"><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
                                     </td>
                                   </tr>
                               @endforeach

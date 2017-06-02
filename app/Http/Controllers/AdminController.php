@@ -1,10 +1,13 @@
 <?php namespace papeleria\Http\Controllers;
 
 use papeleria\Http\Requests;
+use Illuminate\Http\Request;
 use papeleria\Http\Controllers\Controller;
 use papeleria\Products;
-use papeleria\user;
+use papeleria\User;
+use papeleria\Credits;
 use Illuminate\Contracts\Auth\Guard;
+use Input;
 
 class AdminController extends Controller {
 
@@ -50,7 +53,8 @@ class AdminController extends Controller {
 
 	public function creditos(){
 
-		return view('creditos');
+		$credit = Credits::all();
+		return view('creditos')->with('credit', $credit);
 	}
 
 	public function catalogo(){
@@ -74,7 +78,7 @@ class AdminController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**
@@ -87,15 +91,29 @@ class AdminController extends Controller {
 		//
 	}
 
+	public function nuevo($id)
+	{
+		$user = user::find($id);
+		return view('nuevo')->with('user', $user);
+	}
+
 	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function refresh($id)
 	{
-		//
+
+		$details = new user();
+
+		$details->name = Input::get('name');
+		$details->email = Input::get('email');
+
+		$details->save();
+
+		return Redirect('/admin/usuarios')->with('alert', 'Usuario Modificado');
 	}
 
 	/**
@@ -130,7 +148,8 @@ class AdminController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$delete = user::find($id);
+  		return Redirect('/admin/usuarios')->with($delete->delete())->with('alert', 'Usuario borrado');
 	}
 
 }

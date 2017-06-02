@@ -76,6 +76,10 @@ Route::get('/admin/catalogo', [
 	'as' => 'catalogo'
 ]);
 
+Route::get('/admin/usuarios/{id}/delete', [
+	'uses' => 'AdminController@destroy',
+	'as' => 'destroy'
+]);
 
 /*----Rutas de edicion----*/
 
@@ -84,10 +88,19 @@ Route::get('/admin/usuarios/edit/user/{id}', [
 	'as' => 'edit'
 ]);
 
+Route::get('/admin/usuarios/nuevo', [
+	'uses' => 'AdminController@nuevo',
+	'as' => 'nuevo'
+]);
+
 Route::get('/admin/catalogo/edit/product/{id}', [
 	'uses' => 'AdminController@update',
 	'as' => 'update'
 ]);
+
+Route::post('/admin/usuarios/{id}/refresh', 'AdminController@refresh');
+
+Route::post('/admin/usuarios/nuevo/user/{id}', 'AdminController@create');
 
 /*----rutas de las vistas del menu izquierdo----*/
 

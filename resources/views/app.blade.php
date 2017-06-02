@@ -1,6 +1,3 @@
-@extends('template.main')
-@section('tittle'){{'title'}}@endsection
-
 <body>
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -29,16 +26,11 @@
 						<li><a href="{{ url('/auth/login') }}"><span class="glyphicon glyphicon-log-in"></span>	Entrar</a></li>
 						<!--<li><a href="{{ url('/auth/register') }}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>-->
 					@else
-						<li><a><i class="fa fa-user-circle-o" aria-hidden="true"></i>Bienvenido:&nbsp{{ Auth::user()->name }}</a></li>
+						<li><a>Bienvenido:&nbsp{{ Auth::user()->name }}</a></li>
 						<li><a href="{{ url('/auth/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
 					@endif
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
-</html>
