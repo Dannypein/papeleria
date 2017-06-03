@@ -1,5 +1,6 @@
 <?php namespace papeleria\Http\Controllers;
 
+use Carbon\Carbon;
 use DB;
 use Excel;
 use papeleria\Http\Requests\ImportarArticulosRequest;
@@ -90,10 +91,13 @@ class productscontroller extends Controller
 
   public function importar(ImportarArticulosRequest $request)
   {
+    $inicio = Carbon::now();
+
     $imported = $this->importProductsFromUploadedFile($request);
     $data     = [
       'articulos'       => $imported,
       'total_articulos' => products::count(),
+      'tiempo_segundos' => Carbon::now()->diffInSeconds($inicio),
     ];
 
     return view('importados', $data);

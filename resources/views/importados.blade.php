@@ -10,7 +10,18 @@
         <div class="col-xs-12 text-left" style="background-color: white; padding: 2em; color: black;">
           <h4>Artículos importados</h4>
 
-          <p>Se importaron {{ count($articulos) }} artículos con éxito.</p>
+          <div class="well well-sm detalles">
+            <h6>Total de artículos importados: {{ count($articulos) }}</h6>
+            <h6>Tiempo: {{ $tiempo_segundos }} segundos</h6>
+            <h6>Total de artículos en la base de datos: {{ $total_articulos }}</h6>
+          </div>
+
+          <div class="acciones">
+            <a href="{!! route('products.importar') !!}"
+               class="btn btn-primary">Importar otro archivo</a>
+          </div>
+
+          <hr class="separator">
 
           <table class="table table-condensed table-striped">
             <thead>
@@ -46,15 +57,6 @@
             </tr>
             </tfoot>
           </table>
-
-          <div class="detalles">
-            <h5>Total de artículos importados: {{ count($articulos) }}</h5>
-            <h5>Total de artículos en la base de datos: {{ $total_articulos }}</h5>
-          </div>
-
-          <div class="acciones">
-            <a href="{!! route('products.importar') !!}">Importar otro archivo</a>
-          </div>
         </div>
       </main>
     </div>
