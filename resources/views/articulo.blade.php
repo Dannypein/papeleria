@@ -10,12 +10,12 @@
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <div class="thumbnail">
-                            <img class="img-show" src="{{ asset('img/products/' . $details->id . '/' . $details->id . '.jpg') }}" alt="Sin Imagen">
+                            <img id="img-show" src="{{ asset('img/products/' . $details->id . '/' . $details->id . '.jpg') }}" alt="Sin Imagen">
                             <br>
                             @for ($i = 1; $i < 4; $i++)
                                 <div class="col-md-4 portfolio-item">
                                     <a>
-                                        <img id="myImg" class="product-image" alt="Sin Imagen" src="{!!asset('img/products'). '/' . $details->id . '/' .$i. '.jpg'!!}" alt="">
+                                        <img class="product-image" alt="Sin Imagen" src="{!!asset('img/products'). '/' . $details->id . '/' .$i. '.jpg'!!}" alt="">
                                     </a>
                                 </div>
                             @endfor
@@ -46,7 +46,7 @@
                                 <li class="list-group-item"><b>Presentación:</b>&nbsp1{{$details->type}}</li>
                             </ul>
                             <div class="panel-footer">
-                                <div><p><b>SKU:</b>&nbsp{{$details->sku}}</p></div> 
+                                <div><p><b>SKU:</b>&nbsp{{$details->sku}}</p></div>
 
                                 @if($details->available==='si')
                                     <div class="well well-sm" align="center" style="background-color: #4CAF50; text-transform: uppercase">
@@ -68,6 +68,17 @@
     	<!--Footer content-->
     	@include('template.partials.footer')
     </div>
+
+		<script>
+		$('.product-image').click(cambiarImagenPrincipal);
+
+		function cambiarImagenPrincipal() {
+			var nuevaImagenUrl = $(this).attr('src');
+			var imagenPrincipalImg = $('#img-show');
+
+			imagenPrincipalImg.attr('src', nuevaImagenUrl);
+		}
+		</script>
 </body>
 @stop
 
