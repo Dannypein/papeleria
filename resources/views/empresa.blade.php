@@ -10,7 +10,7 @@
                 <div class="col-md-3">
                     <p class="lead list-group-item"><b>Acciones</b></p>
                     <div class="list-group">
-                        <a href="{{route('nuevo')}}" class="list-group-item">Nuevo Usuario</a>
+                        <a href="{{route('nueva_empresa')}}" class="list-group-item">Nuevo Empresa</a>
                     </div>
                 </div>
                 @if(\Session::has('alert'))
@@ -25,38 +25,33 @@
                   <div class="panel panel-default">
                     <div class="panel-heading" style="background-color: #607d8b; color: white;">
                         <a href="{{ url('/admin') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                        <b style="color: white; font-size: 1.5em;">Usuarios Registrados</b>
+                        <b style="color: white; font-size: 1.5em;">Empresas Registradas</b>
                     </div>
                     <div class="panel-body table-responsive">
-                        <table style="font-weight: bold;" class="table table-condensed table-responsive">
+                        <table style="font-weight: bold;" class="table table-striped table-responsive">
                             <thead style="background-color: #455a64; color: white" >
                               <tr>
-                                <th>Nombre de Usuario</th>
-                                <th>Correo</th>
-                                <th>Empresa</th>
-                                <th>Departamento</th>
-                                <th>Ultima vez conectado</th>
+                                <th>Nombre de la Empresa</th>
+                                <th>Dirrección</th>
+                                <th>Telefono</th>
                                 <th>Acciones</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach($user as $users)
+                              @foreach($empresa as $e)
                                   <tr align="left">
-                                    <td>{{$users->name}}</td>
-                                    <td>{{$users->email}}</td>
-                                    <td>{{$users->name_company}}</td>
-                                    <td>{{$users->department}}</td>
-                                    <td>{{$users->updated_at}}</td>
+                                    <td>{{$e->name_company}}</td>
+                                    <td>{{$e->address_company}}</td>
+                                    <td>{{$e->phone}}</td>
                                     <td>
-                                        <a href="{{route('edit', [$users->id])}}"><button type="button" class="btn btn-info" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                        <a href="/admin/usuarios/{{$users->id}}/delete"><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                        <a href="{{route('edit_empresa', [$e->id])}}"><button type="button" class="btn btn-info" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
                                     </td>
                                   </tr>
                               @endforeach
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> 
             </main>
         </div>
         <!--Footer content-->
