@@ -110,3 +110,15 @@ Route::get('/regalos', [
 	'uses' => 'WelcomeController@regalos',
 	'as' => 'regalos'
 ]);
+
+/*----rutas par importar productos----*/
+
+Route::get('/productos/importar', [
+	'uses' => 'ProductsController@formImportar',
+	'as'   => 'products.form_importar'
+]);
+
+Route::post('/productos/importar', [
+	'uses' => 'ProductsController@importar',
+	'as'   => 'products.importar'
+]);
