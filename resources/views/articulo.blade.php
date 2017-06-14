@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <div class="thumbnail">
-                            <img id="img-show" src="{{ asset('img/products/' . $details->id . '/' . $details->id . '.jpg') }}" alt="Sin Imagen">
+                            <img id="img-show" class="img-show" src="{{ asset('img/products/' . $details->id . '/' . $details->id . '.jpg') }}" alt="Sin Imagen">
                             <br>
                             @for ($i = 1; $i < 4; $i++)
                                 <div class="col-md-4 portfolio-item">

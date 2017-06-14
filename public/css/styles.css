@@ -71,8 +71,8 @@ main{
 	}
 
 .img-show{
-	width: 50% !important;
-	height: 50% !important;
+	width: 310px !important;
+	height: 310px !important;
 }
 
 /*--------Estilos para el botón de importación-----------*/
@@ -111,6 +111,6 @@ main{
 	.product-image{
 
 		width: 100%;
-		height: 50%;
+		height: 100%;
 	}
 }
