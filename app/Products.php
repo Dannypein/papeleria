@@ -27,12 +27,12 @@ class products extends Model {
 
   public static function createFromCSV($row) {
     $data = [
-      'sku'       => data_get($row, 'clave'),
-      'name'      => array_get($row, 'descripcion'),
-      'brand'     => array_get($row, 'linea'),
-      'model'     => array_get($row, 'modelo'),
-      'size'      => array_get($row, 'talla'),
-      'available' => array_get($row, 'existencias'),
+      'sku'         => data_get($row, 'clave'),
+      'name'        => array_get($row, 'descripcion'),
+      'model'       => array_get($row, 'modelo'),
+      'size'        => array_get($row, 'talla'),
+      'available'   => array_get($row, 'existencias'),
+      'category_id' => array_get($row, 'linea'),
     ];
 
     return $data;
