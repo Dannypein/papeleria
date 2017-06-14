@@ -26,8 +26,12 @@
 						<li><a href="{{ url('/auth/login') }}"><span class="glyphicon glyphicon-log-in"></span>	Entrar</a></li>
 						<!--<li><a href="{{ url('/auth/register') }}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>-->
 					@else
+						<li><a href="{{ url('carrito') }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbspMi Canasta&nbsp<span class="badge">0</span></a></li>
+
 						<li><a>Bienvenido:&nbsp{{ Auth::user()->name }}</a></li>
+						
 						<li><a href="{{ url('/auth/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Salir</a></li>
+
 					@endif
 				</ul>
 			</div>
