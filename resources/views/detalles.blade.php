@@ -7,9 +7,7 @@
         <div class="row">
         @include('app')
             <main>
-                <div class="col-md-12">
-                    <div class="well">Creditos</div>
-                </div>
+                @include('articulo')
             </main>
         </div>
         <!--Footer content-->

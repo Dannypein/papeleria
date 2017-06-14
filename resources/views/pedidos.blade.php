@@ -6,9 +6,9 @@
     <div class="container">
         <div class="row">
         @include('app')
-            <main> 
+            <main>
                 @if(\Session::has('alert'))
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
                         <strong>{{Session::get('alert')}}</strong>
@@ -19,32 +19,38 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color: #607d8b; color: white;">
                             <a href="{{ url('/admin') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                            <b style="color: white; font-size: 1.5em;">Créditos Asignados</b>
+                            <b style="color: white; font-size: 1.5em;">Pedidos</b>
                         </div>
-                        <div class="panel-body">
-                            <table style="font-weight: bold;" class="table table-striped table-responsive">
+                        <div class="panel-body table-responsive">
+                            <table style="font-weight: bold;" class="table table-condensed table-responsive">
                                 <thead style="background-color: #455a64; color: white" >
                                   <tr>
-                                    <th>Nombre de Usuario</th>
-                                    <th>Correo Electrónico</th>
+                                    <th>Numero de Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Empresa</th>
                                     <th>Departamento</th>
-                                    <th>Crédito máximo asignado</th>
-                                    <th>Cambiar límite de crédito</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($credit as $c)
+                                  @foreach($pedidos as $p)
                                       <tr align="left">
-                                        <td>{{$c->name}}</td>
-                                        <td>{{$c->email}}</td>
-                                        <td>{{$c->department}}</td>
-                                        @if($c->credit_limit < 1)
-                                            <td class="danger">{{$c->credit_limit}}</td>
-                                        @elseif($c->credit_limit > 0)
-                                            <td class="success">{{$c->credit_limit}}</td>
+                                        <td>{{$p->PedidoID}}</td>
+                                        <td>{{$p->name}}</td>
+                                        <td>{{$p->name_company}}</td>
+                                        <td>{{$p->department}}</td>
+                                        <td>{{$p->total_products}}</td>
+                                        <td>{{$p->precio_total}}</td>
+                                        @if($p->status < 1)
+                                            <td class="danger">Pendiente</td>
+                                        @elseif($p->status > 0)
+                                            <td class="success">Entregado</td>
                                         @endif
                                         <td>
-                                            <a href="{{route('editar_credito', [$c->userID])}}"><button type="button" class="btn btn-info" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                            <a href="{{route('editar_pedido', [$p->PedidoID])}}"><button type="button" class="btn btn-info" title="Revisar"><i class="fa fa-list-alt" aria-hidden="true"></i></button></a>
                                         </td>
                                       </tr>
                                   @endforeach

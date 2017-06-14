@@ -1,3 +1,4 @@
+@extends('template.main')
 @extends('app')
 
 @section('content')
