@@ -6,7 +6,7 @@ class RejectNormalUsers extends Authenticate {
 
   public function handle($request, Closure $next) {
 
-    if ($this->auth->check() && $this->auth->user()->isNormalUser()) {
+    if ($this->auth->check() && $this->auth->user()->Normal()) {
       return redirect()->route('home');
 
     } else {

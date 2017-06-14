@@ -7,39 +7,43 @@
         <div class="row">
         @include('app')
             <main>
-                @if(\Session::has('alert'))
-                <div class="col-md-9">
-                    <div class="alert alert-dismissible alert-success">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
-                        <strong>{{Session::get('alert')}}</strong>
-                    </div>
-                </div>
-                @endif
                 <div class="col-md-12">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <a href="{{ url('/admin') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                        <h4>Nuevo usuario</h4>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table style="font-weight: bold;" class="table table-striped table-responsive">
-                            <thead style="background-color: #455a64; color: white" >
-                              <tr>
-                                <th>Nombre de Usuario</th>
-                                <th>Tipo</th>
-                                <th>Correo</th>
-                                <th>Ultima vez conectado</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr align="left">
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->type}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->updated_at}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #607d8b; color: white;">
+                            <a href="{{ url('/admin/usuarios') }}"><button class="btn" style="float: left;">Regresar</button></a>
+                            <b style="color: white; font-size: 1.5em;">Nuevo Usuario</b>
+                        </div>
+                        <div class="panel-body">
+                            <form method="POST" enctype="multipart/form-data" action="/admin/usuarios/nuevo/usuario/create">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <fieldset>
+                                        <div class="list-group">
+                                            <div class="list-group-item ">
+                                                <b><input placeholder="Nombre" class="form-control" name="name" type="text" value=""></b>
+                                            </div>
+                                            <div class="list-group-item ">
+                                                <b><input placeholder="Correo" class="form-control" name="email" type="text" value=""></b>
+                                            </div>
+                                            <div class="list-group-item ">
+                                                <b><input placeholder="Contraseña" class="form-control" name="password" type="password" value=""></b>
+                                            </div>
+                                            <h6 style="font-weight: bold">Departamento</h6>
+                                            @foreach($user as $u)
+                                            <div class="checkbox" align="left">
+                                                <label><input type="checkbox" name="department_id" value="{{$u->id}}">{{$u->department}}</label>
+                                            </div>
+                                            @endforeach
+                                            <h6 style="font-weight: bold;">Empresa</h6>
+                                            @foreach($user2 as $u2)
+                                            <div class="checkbox" align="left">
+                                                <label><input type="checkbox" name="company_id" value="{{$u2->id}}">{{$u2->name_company}}</label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                <input type="submit" value="Guardar" class="btn btn-success">
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </main>

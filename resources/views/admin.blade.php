@@ -12,7 +12,7 @@
                 <div class="col-md-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4>Usuarios Registrados</h4><button class="button btn-primary" onclick="myFunction()">Mostrar/Ocultar</button>
+                      <h4>Usuarios Registrados</h4><button id="btn1" class="button btn-primary">Ocultar</button><button id="btn2" class="button btn-primary">Mostrar</button>
                     </div>
                     <div class="panel-body" id="myDIV">
                       <table class="table table-striped table-responsive">
@@ -41,7 +41,7 @@
                 <div class="col-md-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4>Pedidos</h4><button class="button btn-primary" onclick="myFunction2()">Mostrar/Ocultar</button>
+                      <h4>Pedidos</h4><button id="btn3" class="button btn-primary">Ocultar</button><button id="btn4" class="button btn-primary">Mostrar</button>
                     </div>
                     <div class="panel-body" id="myDIV2">
                       <table class="table table-striped">
@@ -95,23 +95,24 @@
         @include('template.partials.footer')
     </div>
     <script>
-      function myFunction() {
-          var x = document.getElementById('myDIV');
-          if (x.style.display === 'none') {
-              x.style.display = 'block';
-          } else {
-              x.style.display = 'none';
-          }
-      }
+    $(document).ready(function(){
+      $("#btn1").click(function(){
+         $("#myDIV").hide(500);
+     });
+    $("#btn2").click(function(){
+        $("#myDIV").show(500);
+      });
+    });
 
-       function myFunction2() {
-          var x = document.getElementById('myDIV2');
-          if (x.style.display === 'none') {
-              x.style.display = 'block';
-          } else {
-              x.style.display = 'none';
-          }
-      }
+    $(document).ready(function(){
+      $("#btn3").click(function(){
+         $("#myDIV2").hide(500);
+     });
+    $("#btn4").click(function(){
+        $("#myDIV2").show(500);
+      });
+    });
+    
     </script>
 </body>
 @stop

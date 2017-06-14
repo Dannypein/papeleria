@@ -65,22 +65,46 @@ class WelcomeController extends Controller {
 
 	public function escolar(){
 		
-		return view('escolar');
+		$products = \DB::table('products')
+		/**/
+		->where('products.category', '=', 3)
+		->get();
+
+		$titulo  = 'Consumibles originales';
+		return view('escolar', ['titulo' => $titulo])->with('products', $products);
 	}
 
 	public function oficina(){
-		
-		return view('oficina');
+
+		$products = \DB::table('products')
+		/**/
+		->where('products.category', '=', 1)
+		->get();
+
+		$titulo  = 'Papeleria y Oficina';
+		return view('oficina', ['titulo' => $titulo])->with('products', $products);
 	}
 
 	public function computo(){
 		
-		return view('computo');
+		$products = \DB::table('products')
+		/**/
+		->where('products.category', '=', 2)
+		->get();
+		
+		$titulo  = 'Computo';
+		return view('computo', ['titulo' => $titulo])->with('products', $products);
 	}
 
 	public function regalos(){
 		
-		return view('regalos');
+		$products = \DB::table('products')
+		/**/
+		->where('products.category', '=', 4)
+		->get();
+
+		$titulo  = 'Consumibles genericos';
+		return view('regalos', ['titulo' => $titulo])->with('products', $products);
 	}
 
 }
