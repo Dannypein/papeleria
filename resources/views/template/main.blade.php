@@ -19,6 +19,7 @@
 
 	    <!--Bootstrap MAXCDN Custom Menu CSS-->
 	    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" integrity="sha384-awusxf8AUojygHf2+joICySzB780jVvQaVCAt1clU3QsyAitLGul28Qxb2r1e5g+" crossorigin="anonymous">
+   		<link href="/css/bootstrap-dialog.min.css" rel="stylesheet">
 
 	    <!--Custom Fonts-->
 	    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -31,7 +32,9 @@
 
 	    <!-- Bootstrap JavaScript -->
 	    <script src="/js/bootstrap.min.js"></script>
+			<script src="/js/bootstrap-dialog.min.js"></script>
 
+			<script src="/js/app.js"></script>
 	</head>
 	<body>
 		@yield('content')

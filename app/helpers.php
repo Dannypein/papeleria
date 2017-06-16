@@ -10,14 +10,28 @@ if ( ! function_exists('add_to_cart_button')) {
     $token = csrf_token();
 
     return <<<HTML
-<div>
-  <button class="btn btn-danger btn-cart btn-lg" 
-          data-product-id="{$id}" 
-          data-product-name="{$name}"
-          data-product-price="{$price}"
-          data-csrf-token="{$token}">
+<div class="btn-add-cart-wrapper">
+  <button class="btn btn-danger btn-add-cart btn-lg btn-block">
     <i class="fa fa-shopping-cart"></i> Añadir al carrito
   </button>
+  <form class="count-input" hidden>
+    <input type="hidden" name="product[id]" value="{$id}">
+    <input type="hidden" name="product[nombre]" value="{$name}">
+    <input type="hidden" name="product[precio_unitario]" value="{$price}">
+    <input type="hidden" name="_token" value="{$token}">
+    <div class="input-group input-group-lg">
+      <div class="input-group-addon">
+        <label>Cantidad</label>
+      </div>
+      <input type="number" step="1" value="1" name="product[cantidad]" class="form-control">
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-danger">Añadir</button>
+      </div>
+    </div>
+  </form>  
+  <div class="text-center spinner" hidden>
+    <div class="fa fa-spinner fa-spin"></div>
+  </div>
 </div>
 HTML;
 
