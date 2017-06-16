@@ -25,9 +25,10 @@
                         </form>
                     </div>
                     <div class="panel-body table-responsive">
-                        <table style="font-weight: bold;" class="table table-condensed table-responsive">
+                        <table style="font-weight: bold" class="table table-condensed table-responsive table-in-cart">
                             <thead style="background-color: #455a64; color: white" >
                               <tr>
+                                <th>Artículo</th>
                                 <th>Nombre</th>
                                 <th>Cantidad</th>
                                 <th>Precio unitario</th>
@@ -38,6 +39,7 @@
                             <tbody>
                               @foreach($products as $p)
                                   <tr align="left">
+                                    <td><img class="img-in-cart" src="{!! asset('img/products/' . $p['id'] . '/1.jpg') !!}"></td>
                                     <td>{{$p['nombre']}}</td>
                                     <td>{{$p['cantidad']}}</td>
                                     <td>$ {{$p['precio_unitario']}} MXN</td>
