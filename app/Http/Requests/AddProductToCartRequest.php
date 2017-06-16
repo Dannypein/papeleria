@@ -20,8 +20,8 @@ class AddProductToCartRequest extends Request {
 		return [
 			'product.id'              => 'required|numeric',
       'product.nombre'          => 'required',
-      'product.cantidad'        => 'required',
-      'product.precio_unitario' => 'required',
+      'product.cantidad'        => 'required|numeric',
+      'product.precio_unitario' => 'required|numeric',
 		];
 	}
 

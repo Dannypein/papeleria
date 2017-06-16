@@ -27,10 +27,13 @@ class CartController extends Controller {
    */
   public function addProduct(AddProductToCartRequest $request, Cart $cart) {
 	  $product = $request->get('product');
+	  $product['subtotal'] = $product['cantidad'] * $product['precio_unitario'];
 
 	  $cart->addProduct($product);
 
-    return response()->json(['product' => $product, 'total_products' => $cart->count()]);
+    return response()->json(['product'        => $product,
+                             'total_products' => $cart->count(),
+                             'token'          => csrf_token()]);
   }
 
 }
