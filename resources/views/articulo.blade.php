@@ -44,21 +44,10 @@
                                 <li class="list-group-item"><b>Tamaño:</b>&nbsp&nbsp{{$details->size}}</li>
                                 <li class="list-group-item"><b>Peso:</b>&nbsp{{$details->weight}}</li>
                                 <li class="list-group-item"><b>Presentación:</b>&nbsp1{{$details->type}}</li>
+                                <li class="list-group-item"><b>SKU:</b>&nbsp{{$details->sku}}</li>
                             </ul>
                             <div class="panel-footer">
-                                <div><p><b>SKU:</b>&nbsp{{$details->sku}}</p></div>
-
-                                @if($details->available==='si')
-                                    <div class="well well-sm" align="center" style="background-color: #4CAF50; text-transform: uppercase">
-                                        <h6>Disponible:&nbsp{{$details->available}}</h6>
-                                    </div>
-                                    <a href="" class="btn btn-primary" role="button">Agregar |&nbsp<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                @else
-                                    <div class="well well-sm" align="center" style="background-color: #F44336; text-transform: uppercase">
-                                        <h6>Disponible:&nbsp{{$details->available}}</h6>
-                                    </div>
-                                    <a href="" class="btn btn-primary disabled" role="button">Agregar |&nbsp<i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                @endif
+                                {!! add_to_cart_button($details) !!}
                             </div>
                         </div>
                     </div>
