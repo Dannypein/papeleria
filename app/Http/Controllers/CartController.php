@@ -14,7 +14,9 @@ class CartController extends Controller {
    * @return Response
    */
 	public function show(Cart $cart) {
-    return $cart->products();
+    $products = $cart->products();
+
+    return view('carrito', compact('products'));
   }
 
   /**
@@ -34,6 +36,19 @@ class CartController extends Controller {
     return response()->json(['product'        => $product,
                              'total_products' => $cart->count(),
                              'token'          => csrf_token()]);
+  }
+
+  /**
+   * Vacía el carrito de compra del usuario actual.
+   *
+   * @param Cart $cart
+   *
+   * @return Response
+   */
+  public function destroy(Cart $cart) {
+    $cart->reset();
+
+    return redirect()->back()->with('success', 'Carrito vaciado.');
   }
 
 }
