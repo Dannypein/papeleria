@@ -207,3 +207,4 @@ Route::post('/productos/importar', [
 /*----rutas para el cart----*/
 Route::get('/cart', ['as' =>'cart.show', 'uses' => 'CartController@show']);
 Route::post('/cart/add_product', ['as' => 'cart.add_product', 'uses' => 'CartController@addProduct']);
+Route::delete('/cart', ['as' =>'cart.destroy', 'uses' => 'CartController@destroy']);

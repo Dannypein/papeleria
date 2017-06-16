@@ -29,7 +29,7 @@ $(function() {
         success: function(response) {
           BootstrapDialog.alert('Se añadió el producto al carrito.');
           form.hide();
-          form.find('input').val('1'); // Reinicia el input de cantidad
+          form.find('[type=number]').val('1'); // Reinicia el input de cantidad
           spinner.hide();
           button.show();
 
