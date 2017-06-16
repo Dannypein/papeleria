@@ -24,7 +24,7 @@ class CamposNulosEnProducts extends Migration {
 			$table->string('weight')->nullable()->change();
 			$table->string('type')->nullable()->change();
 			$table->string('unit')->nullable()->change();
-			$table->mediumText('details')->nullable()->change();
+			$table->text('details')->nullable()->change();
 		});
 	}
 
