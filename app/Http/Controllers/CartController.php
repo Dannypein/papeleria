@@ -1,94 +1,36 @@
 <?php namespace papeleria\Http\Controllers;
 
-use papeleria\Http\Requests;
-use papeleria\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use papeleria\Cart;
+use papeleria\Http\Requests\AddProductToCartRequest;
 
 class CartController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index(){
+  /**
+   * Muestra el carrito de compra de un usuario.
+   *
+   * @param Cart $cart
+   *
+   * @return Response
+   */
+	public function show(Cart $cart) {
+    return $cart->products();
+  }
 
-		$cart = session('carrito',[]);
+  /**
+   * Añade un producto al cart del usuario actual.
+   *
+   * @param AddProductToCartRequest $request
+   * @param Cart                    $cart
+   *
+   * @return Response
+   */
+  public function addProduct(AddProductToCartRequest $request, Cart $cart) {
+	  $product = $request->get('product');
 
-		$articulo =['id'=>1,
-					'cantidad'=>5,
-					'precio_unitario'=>10,
-					'subtotal'=>50];
+	  $cart->addProduct($product);
 
-		$cart[] =$articulo;
-		session()->put('cart',$cart);
-
-		return Redirect('/carrito')->with('carrito', $cart);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    return response()->json(['product' => $product, 'total_products' => $cart->count()]);
+  }
 
 }
