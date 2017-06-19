@@ -56,7 +56,7 @@
             <!--<li><a href="{{ url('/auth/register') }}"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>-->
           @else
 
-            <li><a href="{{ url('carrito') }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbspMi Canasta&nbsp<span class="badge">0</span></a></li>
+            <li><a href="{{ url('cart') }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbspMi Canasta&nbsp<span class="badge">0</span></a></li>
             
           @endif
 	       <!--<li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>	Carrito</a></li>-->
