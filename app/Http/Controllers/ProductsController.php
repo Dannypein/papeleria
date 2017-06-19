@@ -30,6 +30,62 @@ class productscontroller extends Controller
     //
   }
 
+  public function reciente(){
+
+    $products = products::orderBy('id', 'created_at')->paginate(15);
+    return view('catalogo_busqueda')->with('products', $products);
+  }
+
+  public function modificado(){
+
+    $products = products::orderBy('id', 'updated_at')->paginate(15);
+    return view('catalogo_busqueda')->with('products', $products);
+  }
+
+  public function precio(){
+
+    $products = products::orderBy('price', 'asc')->paginate(15);
+    return view('catalogo_busqueda')->with('products', $products);
+  }
+
+  public function disponible(){
+
+    $products = products::orderBy('available', 'si')->paginate(15);
+    return view('catalogo_busqueda')->with('products', $products);
+  }
+
+
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @return Response
+   */
+
+  public function reciente2(){
+
+    $products = products::orderBy('id', 'created_at')->paginate(15);
+    return view('catalogo_n')->with('products', $products);
+  }
+
+  public function modificado2(){
+
+    $products = products::orderBy('id', 'updated_at')->paginate(15);
+    return view('catalogo_n')->with('products', $products);
+  }
+
+  public function precio2(){
+
+    $products = products::orderBy('price', 'asc')->paginate(15);
+    return view('catalogo_n')->with('products', $products);
+  }
+
+  public function disponible2(){
+
+    $products = products::orderBy('available', 'si')->paginate(15);
+    return view('catalogo_n')->with('products', $products);
+  }
+
+
   /**
    * Store a newly created resource in storage.
    *

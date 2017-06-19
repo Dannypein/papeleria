@@ -29,9 +29,9 @@
 	          </ul>
 	        </li>-->
 	    </ul>
-    	<form class="navbar-form navbar-right">
+    	<form class="navbar-form navbar-right" action="/buscar">
       	<div class="input-group" style="margin-right: 1em;">
-          <input type="text" class="form-control input-sm" placeholder="Buscar" name="search">
+          <input type="text" class="form-control input-sm" placeholder="Buscar" name="name">
           <div class="input-group-btn">
             <button class="btn btn-default btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>

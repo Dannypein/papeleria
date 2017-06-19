@@ -46,6 +46,12 @@ class NormalController extends Controller {
 		return view('myinfo')->with('user', $user);
 	}
 
+	public function search2(Request $request){
+		
+		$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(12);
+		return view('catalogo_n')->with('products', $products);
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -85,10 +91,9 @@ class NormalController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store($id)
-	{
-		$products = products::find($id);
-		return view('update')->with('products', $products);
+	public function store($id){
+		
+		//
 	}
 
 	/**

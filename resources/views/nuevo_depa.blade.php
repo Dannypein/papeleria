@@ -1,0 +1,37 @@
+@extends('template.main')
+@section('tittle'){{'title'}}@endsection
+@section('content')
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+        @include('app')
+            <main>
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background-color: #607d8b; color: white;">
+                            <a href="{{ url('/admin/empresas') }}"><button class="btn" style="float: left;">Regresar</button></a>
+                            <b style="color: white; font-size: 1.5em;">Nuevo Departamento</b>
+                        </div>
+                        <div class="panel-body">
+                            <form method="POST" enctype="multipart/form-data" action="/admin/empresas/nuevo/departamento/create">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <fieldset>
+                                        <div class="list-group">
+                                            <div class="list-group-item ">
+                                                <b><input placeholder="Nombre del Departamento" class="form-control" name="name" type="text" value=""></b>
+                                            </div>
+                                        </div>
+                                <input type="submit" value="Guardar" class="btn btn-success">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!--Footer content-->
+        @include('template.partials.footer')
+    </div>
+</body>
+@stop

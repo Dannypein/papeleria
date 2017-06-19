@@ -55,6 +55,7 @@
                               @endforeach
                             </tbody>
                         </table>
+                        <?php echo $user->render() ?>
                     </div>
                 </div>
             </main>

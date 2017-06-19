@@ -10,15 +10,15 @@
                 <div class="col-md-12">
                     <div class="col-md-6">
                         <div class="thumbnail">
-                            <img id="img-show" class="img-show" src="{{ asset('img/products/' . $details->id . '/' . $details->id . '.jpg') }}" alt="Sin Imagen">
-                            <br>
+                            <img id="img-show" class="img-show" src="{{ asset('img/products/' . $details->id . '.jpg') }}" alt="Sin Imagen">
+                            <!--<br>
                             @for ($i = 1; $i < 4; $i++)
                                 <div class="col-md-4 portfolio-item">
                                     <a>
                                         <img class="product-image" alt="Sin Imagen" src="{!!asset('img/products'). '/' . $details->id . '/' .$i. '.jpg'!!}" alt="">
                                     </a>
                                 </div>
-                            @endfor
+                            @endfor-->
                             <div class="caption">
                                 <div class="panel-heading"><b>Detalles:</b></div>
                                 <div class="panel-body"><p>{{$details->details}}</p></div>
@@ -29,11 +29,18 @@
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
-                            <div class="panel-heading"><h5>{{$details->name}}</h5></div>
+                            <div class="panel-heading" style="background-color: #607d8b; color: white;">
+                                <a href="{{ URL::previous() }}"><button class="btn" style="float: left; color: black;">Regresar</button></a>
+                                <h5 style="color: white;">{{$details->name}}</h5>
+                            </div>
                             <div class="panel-body">
                                 <div><h5 class="pull-left">Unidad:&nbsp{{$details->unit}}</h5></div>
                                 <div><h5 class="pull-right">Precio:&nbsp$&nbsp{{$details->price}}</h5></div>
                                 <div>
+                                    <select class="form-control" id="sel1">
+                                        <option>Pieza</option>
+                                        <option>Caja</option>
+                                    </select>
                                     <input class="form-control input-sm" type="number" value="" placeholder="Cantidad a Agregar">
                                 </div>
                             </div>

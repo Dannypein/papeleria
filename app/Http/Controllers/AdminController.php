@@ -31,7 +31,7 @@ class AdminController extends Controller {
 
 		if ($auth->user()->normal()) {
 
-			$pedidos = pedidos::all();
+			$pedidos = pedidos::orderBy('id', 'desc')->paginate(10);
 			return view('desktop')->with('pedidos', $pedidos);
 
 		} else {
@@ -43,9 +43,27 @@ class AdminController extends Controller {
 
 	public function admin(){
 
-		$user = user::all();
-		return view('admin')->with('user', $user);
+		$pedidos = \DB::table('pedidos')
+		/**/
+		->where('pedidos.status', '=', '0')
+		->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
+		->join('users', 'users.id', '=', 'pedidos.user_id')
+		->join('company', 'company.id', '=', 'users.company_id')
+		->join('departments', 'departments.id', '=', 'users.department_id')
+		->orderby('PedidoID','desc')
+		->paginate(10);
+
+		$user = user::orderBy('id', 'desc')->paginate(10);
+		return view('admin')->with('user', $user)->with('pedidos', $pedidos);
 	}
+
+/*----Buqueda----*/
+
+	public function search3(Request $request){
+			
+			$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(12);
+			return view('catalogo')->with('products', $products);
+		}
 
 /*--------------------Controllers de Views del menu izquierdo admin-----------------------*/
 
@@ -57,7 +75,7 @@ class AdminController extends Controller {
 		->join('departments', 'departments.id', '=', 'users.department_id')
 		->join('company', 'company.id', '=', 'users.company_id')
 
-		->get();
+		->paginate(15);
 
 		return view('usuarios')->with('user', $user);
 	}
@@ -69,7 +87,7 @@ class AdminController extends Controller {
 		->select('users.id as userID', 'departments.*', 'users.*')
 		->join('departments', 'departments.id', '=', 'users.department_id')
 
-		->get();
+		->paginate(15);
 
 		return view('creditos')->with('credit', $credit);
 
@@ -78,12 +96,15 @@ class AdminController extends Controller {
 	public function empresa(){
 		
 		$empresa = company::all();
-		return view('empresa')->with('empresa', $empresa);
+
+		$empresa2 = Departments::all();
+
+		return view('empresa')->with('empresa', $empresa)->with('empresa2', $empresa2);
 	}
 
 	public function catalogo(){
 		
-		$products = products::all();
+		$products = products::orderBy('id', 'desc')->paginate(15);
 		return view('catalogo')->with('products', $products);
 	}
 
@@ -96,7 +117,7 @@ class AdminController extends Controller {
 		->join('company', 'company.id', '=', 'users.company_id')
 		->join('departments', 'departments.id', '=', 'users.department_id')
 		->orderby('PedidoID','ASC')
-		->get();
+		->paginate(15);
 		
 		return view('pedidos')->with('pedidos', $pedidos);
 	}
@@ -212,6 +233,25 @@ class AdminController extends Controller {
 		return Redirect('/admin/empresas')->with($empresa->save())->with('alert', 'Empresa Creada');
 	}
 
+	public function nuevo_depa(){
+
+		return view('nuevo_depa');
+	}
+
+	public function nuevo_product(){
+
+		return view('nuevo_product');
+	}
+
+	public function create_department(){
+
+		$empresa = new Departments;
+
+		$empresa->department = Input::get('name');
+		
+		return Redirect('/admin/empresas')->with($empresa->save())->with('alert', 'Departamento Creado');
+	}
+
 	public function nueva_empresa(){
 		
 		$nempresa = company::all();
@@ -245,9 +285,52 @@ class AdminController extends Controller {
 	 * @return Response
 	 */
 
-	public function store()
-	{
-		//
+	public function store($id){
+
+		$products = products::find($id);
+
+		$products->name = Input::get('name');
+		$products->model = Input::get('model');
+		$products->brand = Input::get('brand');
+		$products->size = Input::get('size');
+		$products->unit = Input::get('unit');
+		$products->price = Input::get('price');
+		$products->weight = Input::get('weight');
+		$products->type = Input::get('type');
+		$products->available = strtolower(Input::get('available'));
+		$products->category = Input::get('category');
+		$products->details = Input::get('details');
+
+		if ($imagen = Input::file('file')) {
+
+			$imagen->move(base_path('/public/img/products/'), $products->id .'/'. $products->id. '.jpg');
+		}
+		
+		return Redirect('/admin/catalogo')->with($products->save())->with('alert', 'Producto Modificado');
+	}
+
+	public function create_p(){
+
+		$products = new products;
+
+		$products->name = Input::get('name');
+		$products->sku = Input::get('sku');
+		$products->model = Input::get('model');
+		$products->brand = Input::get('brand');
+		$products->size = Input::get('size');
+		$products->unit = Input::get('unit');
+		$products->price = Input::get('price');
+		$products->weight = Input::get('weight');
+		$products->type = Input::get('type');
+		$products->available = strtolower(Input::get('available'));
+		$products->category = Input::get('category');
+		$products->details = Input::get('details');
+		$products->save();
+
+		$imagen = Input::file('file');
+		$imagen->move(base_path('/public/img/products/'), $products->id .'/'. $products->id. '.jpg');
+		
+		return Redirect('/admin/catalogo')->with('alert', 'Producto Modificado');
 	}
 
 	/**
@@ -295,9 +378,15 @@ class AdminController extends Controller {
 	 */
 
 	/*-------------Controller de eliminacion-----------------*/
+
+	public function delete($id){
+
+		$delete = products::find($id);
+  		return Redirect('/admin/catalogo')->with($delete->delete())->with('alert', 'Producto borrado');
+	}
 		
-	public function destroy($id)
-	{
+	public function destroy($id){
+
 		$delete = user::find($id);
   		return Redirect('/admin/usuarios')->with($delete->delete())->with('alert', 'Usuario borrado');
 	}

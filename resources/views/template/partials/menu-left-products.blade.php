@@ -3,14 +3,17 @@
 	<div class="list-group">
 	    <a class="list-group-item">
 	    	<div class="input-group">
-	        	<input type="text" class="form-control" placeholder="Buscar" name="search">
-	        	<div class="input-group-btn">
-	        		<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-	        	</div>
+		    	<form class="navbar-form navbar-right" action="/catalogo/buscar">
+		    		<input type="text" class="form-control" placeholder="Buscar" name="name">
+		        	<div class="input-group-btn">
+		        		<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+		        	</div>
+		    	</form>
         	</div>
 	    </a>
-	    <a href="" class="list-group-item"><b>Disponibilidad</b></a>
-	    <a href="" class="list-group-item"><b>Marca</b></a>
-	    <a href="" class="list-group-item"><b>Modelo</b></a>
+	    <a href="{{route('catalogo.disponible2')}}" class="list-group-item"><b>Disponibles</b></a>
+	    <a href="{{route('catalogo.reciente2')}}" class="list-group-item"><b>Recientes</b></a>
+	    <a href="{{route('catalogo.modificado2')}}" class="list-group-item"><b>Ultimas Modificaciones</b></a>
+	    <a href="{{route('catalogo.precio2')}}" class="list-group-item"><b>Mas baratos</b></a>
 	</div>
 </div>

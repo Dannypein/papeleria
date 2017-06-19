@@ -50,6 +50,7 @@
                                   @endforeach
                                 </tbody>
                             </table>
+                            <?php echo $credit->render() ?>
                         </div>
                     </div>
                 </div>
