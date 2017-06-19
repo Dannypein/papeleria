@@ -48,8 +48,13 @@ class products extends Model {
 
       $query->where(\DB::raw("CONCAT(name,'', sku)"), "LIKE", "%$name%");
     }
+  }
     
 
+  public function getPriceAttribute() {
+    $price = $this->attributes['price'] or $price = 0.0;
+
+    return number_format($price, 2);
   }
 
 }

@@ -59,18 +59,6 @@ Route::get('/articulo/{id}', [
 	'as' => 'articulo'
 ]);
 
-/*----Ruta del Carrito de Compras----*/
-
-Route::get('/carrito', [
-	'uses' => 'AdminController@carrito',
-	'as' => 'carrito'
-]);
-
-Route::get('/carrito/nuevo', [
-	'uses' => 'CartController@index',
-	'as' => 'index'
-]);
-
 /*--------------Rutas de control de administrador---------------*/
 
 Route::get('/admin/empresas', [
@@ -252,7 +240,7 @@ Route::post('/admin/empresas/nuevo/departamento/create', 'AdminController@create
 
 Route::post('/desktop/usuarios/{id}/update', 'NormalController@update');
 
-Route::post('/desktop/usuarios/catalogo/agregar/{id}', 'NormalController@create');
+Route::post('/desktop/usuarios/catalogo/agregar/{id}', ['uses' => 'NormalController@create', 'as' => 'pedido.create']);
 
 /*----rutas de las vistas del menu izquierdo----*/
 
@@ -287,3 +275,9 @@ Route::post('/admin/productos/importar', [
 	'uses' => 'ProductsController@importar',
 	'as'   => 'products.importar'
 ]);
+
+/*----rutas para el cart----*/
+Route::get('/cart', ['as' =>'cart.show', 'uses' => 'CartController@show']);
+Route::post('/cart/add_product', ['as' => 'cart.add_product', 'uses' => 'CartController@addProduct']);
+Route::delete('/cart', ['as' =>'cart.destroy', 'uses' => 'CartController@destroy']);
+Route::delete('/cart', ['as' =>'cart.delete', 'uses' => 'CartController@delete']);
