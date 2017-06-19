@@ -6231,3 +6231,29 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+
+/** Estilos para el botón "Añadir al carrito" **/
+.btn-add-cart-wrapper {
+  width: 25em;
+  margin: auto;
+}
+
+.btn-add-cart-wrapper .count-selector,
+.btn-add-cart-wrapper .spinner {
+  display: none;
+}
+
+.btn-add-cart-wrapper .spinner {
+  font-size: 2em;
+}
+
+.img-in-cart {
+  max-height: 4em;
+  width: auto;
+}
+
+.table-in-cart th,
+.table-in-cart td {
+  vertical-align: middle !important;
+}
+/** ----------------------------------------- **/
