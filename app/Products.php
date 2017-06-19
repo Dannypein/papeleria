@@ -42,4 +42,14 @@ class products extends Model {
     return $this->belongsTo(Category::class);
   }
 
+  public function scopeName($query, $name) {
+
+    if (trim($name)!= "") {
+
+      $query->where(\DB::raw("CONCAT(name,'', sku)"), "LIKE", "%$name%");
+    }
+    
+
+  }
+
 }

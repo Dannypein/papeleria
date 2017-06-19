@@ -56,6 +56,7 @@
                                   @endforeach
                                 </tbody>
                             </table>
+                            <?php echo $pedidos->render() ?>
                         </div>
                     </div>
                 </div>

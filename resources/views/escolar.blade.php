@@ -9,10 +9,11 @@
     		<main>
     			@include('template.partials.menu-left')
                 <div class="col-md-9">
+                <div class="well"><h5 align="center">{{ $titulo }}</h5></div>
                     @foreach($products as $p)
                         <div class="col-md-3 col-sm-6 hero-feature">
                             <div class="thumbnail">
-                                <img style="height: 25vh;" src="{{asset('img/products/' . $p->id . '/' . '1' . '.jpg') }}" alt="">
+                                <img style="height: 25vh;" src="{{asset('img/products/' . $p->id . '.jpg') }}" alt="">
                                 <div class="caption">
                                     <h4 class="pull-center">$&nbsp{{$p->price}}</h4>
                                     <p style="font-size: 0.95em; font-weight: bold;" align="justify">{{str_limit($p->name, $limit = 25, $end = '...')}}</p>
@@ -24,6 +25,7 @@
                             </div>
                         </div>
                     @endforeach
+                    <?php echo $products->render() ?>
                 </div>
     		</main>
     	</div>

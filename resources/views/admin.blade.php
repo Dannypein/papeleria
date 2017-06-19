@@ -35,56 +35,47 @@
                           @endforeach
                         </tbody>
                       </table>
+                      <?php echo $user->render() ?>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <h4>Pedidos</h4><button id="btn3" class="button btn-primary">Ocultar</button><button id="btn4" class="button btn-primary">Mostrar</button>
+                      <h4>Pedidos Pendientes</h4><button id="btn3" class="button btn-primary">Ocultar</button><button id="btn4" class="button btn-primary">Mostrar</button>
                     </div>
                     <div class="panel-body" id="myDIV2">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Default</td>
-                            <td>Defaultson</td>
-                            <td>def@somemail.com</td>
-                          </tr>      
-                          <tr class="success">
-                            <td>Success</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                          </tr>
-                          <tr class="danger">
-                            <td>Danger</td>
-                            <td>Moe</td>
-                            <td>mary@example.com</td>
-                          </tr>
-                          <tr class="info">
-                            <td>Info</td>
-                            <td>Dooley</td>
-                            <td>july@example.com</td>
-                          </tr>
-                          <tr class="warning">
-                            <td>Warning</td>
-                            <td>Refs</td>
-                            <td>bo@example.com</td>
-                          </tr>
-                          <tr class="active">
-                            <td>Active</td>
-                            <td>Activeson</td>
-                            <td>act@example.com</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                     <table style="font-weight: bold;" class="table table-condensed table-responsive">
+                                <thead style="background-color: #455a64; color: white" >
+                                  <tr>
+                                    <th>Numero de Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Empresa</th>
+                                    <th>Departamento</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach($pedidos as $p)
+                                      <tr align="left">
+                                        <td>{{$p->PedidoID}}</td>
+                                        <td>{{$p->name}}</td>
+                                        <td>{{$p->name_company}}</td>
+                                        <td>{{$p->department}}</td>
+                                        <td>{{$p->total_products}}</td>
+                                        <td>{{$p->precio_total}}</td>
+                                        @if($p->status < 1)
+                                            <td class="danger">Pendiente</td>
+                                        @elseif($p->status > 0)
+                                            <td class="success">Entregado</td>
+                                        @endif
+                                      </tr>
+                                  @endforeach
+                                </tbody>
+                            </table>
+                          <?php echo $pedidos->render() ?>
                     </div>
                   </div>
                 </div>

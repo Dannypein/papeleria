@@ -11,18 +11,18 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color: #607d8b; color: white;">
                             <a href="{{ url('/admin/empresas') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                            <b style="color: white; font-size: 1.5em;">Datos del usuario</b>
+                            <b style="color: white; font-size: 1.5em;">Datos de la Empresa</b>
                         </div>
 
                         <!--*****FORM*****-->
                                 <div class="panel-body">
                                     <div class="col-md-6">
-                                    <div class="well"><h5>Datos Actuales</h5></div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item"><h6>Nombre de la Empresa:</h6>&nbsp<b>{{$company->name_company}}</b></li>
-                                            <li class="list-group-item"><h6>Dirrección de la Empresa:</h6>&nbsp<b>{{$company->address_company}}</b></li>
-                                            <li class="list-group-item"><h6>Telefono de la Empresa:</h6>&nbsp<b>{{$company->phone}}</b></li>
-                                        </ul>
+                                        <div class="well"><h5>Datos Actuales</h5></div>
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><h6>Nombre de la Empresa:</h6>&nbsp<b>{{$company->name_company}}</b></li>
+                                                <li class="list-group-item"><h6>Dirrección de la Empresa:</h6>&nbsp<b>{{$company->address_company}}</b></li>
+                                                <li class="list-group-item"><h6>Telefono de la Empresa:</h6>&nbsp<b>{{$company->phone}}</b></li>
+                                            </ul>
                                     </div>
                                     <div class="col-md-6">
                                         <form method="POST" enctype="multipart/form-data" action="/admin/empresas/editar/empresa/{{$company->id}}">

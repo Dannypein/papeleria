@@ -6,5 +6,6 @@
 	    <a href="{{route('creditos')}}" class="list-group-item"><b>Creditos</b></a>
 	    <a href="{{route('catalogo')}}" class="list-group-item"><b>Catalogo</b></a>
 	    <a href="{{route('pedidos')}}" class="list-group-item"><b>Pedidos</b></a>
+	    <a href="{{route('products.form_importar')}}" class="list-group-item"><b>Importar Catalogo</b></a>
 	</div>
 </div>

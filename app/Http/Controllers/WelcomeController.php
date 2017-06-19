@@ -37,7 +37,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index(){
 
-		$products = Products::all();
+		$products = Products::orderBy('id', 'asc')->paginate(12);
 		return view('welcome')->with('products', $products);
 	}
 
@@ -51,6 +51,14 @@ class WelcomeController extends Controller {
 	public function contacto(){
 		
 		return view('contacto');
+	}
+
+	/*----Controlador de busqueda----*/
+
+	public function search(Request $request){
+		
+		$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(12);
+		return view('welcome')->with('products', $products);
 	}
 
 	/*----controladores de articulos----*/
@@ -68,7 +76,7 @@ class WelcomeController extends Controller {
 		$products = \DB::table('products')
 		/**/
 		->where('products.category', '=', 3)
-		->get();
+		->paginate(12);
 
 		$titulo  = 'Consumibles originales';
 		return view('escolar', ['titulo' => $titulo])->with('products', $products);
@@ -79,7 +87,7 @@ class WelcomeController extends Controller {
 		$products = \DB::table('products')
 		/**/
 		->where('products.category', '=', 1)
-		->get();
+		->paginate(12);
 
 		$titulo  = 'Papeleria y Oficina';
 		return view('oficina', ['titulo' => $titulo])->with('products', $products);
@@ -90,7 +98,7 @@ class WelcomeController extends Controller {
 		$products = \DB::table('products')
 		/**/
 		->where('products.category', '=', 2)
-		->get();
+		->paginate(12);
 		
 		$titulo  = 'Computo';
 		return view('computo', ['titulo' => $titulo])->with('products', $products);
@@ -101,7 +109,7 @@ class WelcomeController extends Controller {
 		$products = \DB::table('products')
 		/**/
 		->where('products.category', '=', 4)
-		->get();
+		->paginate(12);
 
 		$titulo  = 'Consumibles genericos';
 		return view('regalos', ['titulo' => $titulo])->with('products', $products);

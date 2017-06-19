@@ -41,7 +41,7 @@
                             <tbody>
                               @foreach($products as $p)
                                   <tr align="left">
-                                    <td><a href="{{route('store', [$p->id])}}">{{$p->name}}</a></td>
+                                    <td><a href="{{route('articulo', [$p->id])}}">{{$p->name}}</a></td>
                                     <td>{{$p->sku}}</td>
                                     <td>{{$p->model}}</td>
                                     <td>{{$p->type}}</td>

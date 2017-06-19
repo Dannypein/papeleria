@@ -127,11 +127,6 @@ Route::get('/admin/catalogo/editar/product/{id}', [
 	'as' => 'update'
 ]);
 
-Route::get('/desktop/catalogo/editar/product/{id}', [
-	'uses' => 'NormalController@store',
-	'as' => 'store'
-]);
-
 Route::get('/admin/creditos/nuevo/credito/{id}', [
 	'uses' => 'AdminController@editar_credito',
 	'as' => 'editar_credito'
@@ -154,10 +149,64 @@ Route::get('/admin/empresas/nueva/empresa', [
 	'as' => 'nueva_empresa'
 ]);
 
-Route::post('/admin/creditos/nuevo/credito/{id}/nuevo', [
-	'uses' => 'AdminController@nuevo_credito',
-	'as' => 'nuevo_credito'
+Route::get('/admin/empresas/nuevo/departamento/', [
+	'uses' => 'AdminController@nuevo_depa',
+	'as' => 'nuevo_depa'
 ]);
+
+Route::get('/admin/catalogo/producto/nuevo', [
+	'uses' => 'AdminController@nuevo_product',
+	'as' => 'nuevo_product'
+]);
+/*-----------Ruta De Busqueda---------*/
+
+Route::get('/buscar','WelcomeController@search');
+
+Route::get('/catalogo/buscar','NormalController@search2');
+
+Route::get('/admin/catalogo/buscar','AdminController@search3');
+
+Route::get('/admin/catalogo/reciente',[
+		'as' => 'catalogo.reciente',
+		'uses' => 'ProductsController@reciente'
+	]);
+
+Route::get('/admin/catalogo/modificado',[
+		'as' => 'catalogo.modificado',
+		'uses' => 'ProductsController@modificado'
+	]);
+
+Route::get('/admin/catalogo/precios',[
+		'as' => 'catalogo.precio',
+		'uses' => 'ProductsController@precio'
+	]);
+
+Route::get('/admin/catalogo/disponibles',[
+		'as' => 'catalogo.disponible',
+		'uses' => 'ProductsController@disponible'
+	]);
+
+/*-----------------------------------------------*/
+
+Route::get('/admin/catalogo/reciente',[
+		'as' => 'catalogo.reciente2',
+		'uses' => 'ProductsController@reciente2'
+	]);
+
+Route::get('/admin/catalogo/modificado',[
+		'as' => 'catalogo.modificado2',
+		'uses' => 'ProductsController@modificado2'
+	]);
+
+Route::get('/admin/catalogo/precios',[
+		'as' => 'catalogo.precio2',
+		'uses' => 'ProductsController@precio2'
+	]);
+
+Route::get('/admin/catalogo/disponibles',[
+		'as' => 'catalogo.disponible2',
+		'uses' => 'ProductsController@disponible2'
+	]);
 
 /*--------------------Rutas de eliminacion----------------*/
 
@@ -166,7 +215,28 @@ Route::get('/admin/usuarios/{id}/delete', [
 	'as' => 'destroy'
 ]);
 
+Route::get('/admin/catalogo/product/delete/{id}', [
+	'uses' => 'AdminController@delete',
+	'as' => 'delete'
+]);
+
 /*---------------Rutas de POST de envio--------------------*/
+
+Route::post('/admin/creditos/nuevo/credito/{id}/nuevo', [
+	'uses' => 'AdminController@nuevo_credito',
+	'as' => 'nuevo_credito'
+]);
+
+Route::post('/admin/product/edit/{id}', [
+	'uses' => 'AdminController@store',
+	'as' => 'store'
+]);
+
+Route::POST('/admin/catalogo/producto/nuevo', [
+	'uses' => 'AdminController@create_p',
+	'as' => 'create_p'
+]);
+
 
 Route::post('/admin/empresas/editar/empresa/{id}', 'AdminController@update_empresa');
 
@@ -175,6 +245,8 @@ Route::post('/admin/usuarios/{id}/refresh', 'AdminController@refresh');
 Route::post('/admin/usuarios/nuevo/usuario/create', 'AdminController@create');
 
 Route::post('/admin/empresas/nueva/empresa/create', 'AdminController@create_empresa');
+
+Route::post('/admin/empresas/nuevo/departamento/create', 'AdminController@create_department');
 
 /*--------*/
 
@@ -206,12 +278,12 @@ Route::get('/consumibles/genericos', [
 
 /*----rutas par importar productos----*/
 
-Route::get('/productos/importar', [
+Route::get('/admin/productos/importar', [
 	'uses' => 'ProductsController@formImportar',
 	'as'   => 'products.form_importar'
 ]);
 
-Route::post('/productos/importar', [
+Route::post('/admin/productos/importar', [
 	'uses' => 'ProductsController@importar',
 	'as'   => 'products.importar'
 ]);
