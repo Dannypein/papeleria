@@ -42,4 +42,10 @@ class products extends Model {
     return $this->belongsTo(Category::class);
   }
 
+  public function getPriceAttribute() {
+    $price = $this->attributes['price'] or $price = 0.0;
+
+    return number_format($price, 2);
+  }
+
 }
