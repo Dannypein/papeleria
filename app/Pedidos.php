@@ -19,4 +19,8 @@ class Pedidos extends Model {
 	protected $fillable = ['id', 'id_user', 'total', 'cantidad', 'email_user', 'email_receiver', 'details'];
 
 
+	public static function scopePendientes($query) {
+	  return $query->where('status', 1);
+  }
+
 }

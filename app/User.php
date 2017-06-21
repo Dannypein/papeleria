@@ -48,4 +48,8 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function normal() {
 		return $this->type === 'normal';
 	}
+
+	public function pedidos() {
+	  return $this->hasMany(Pedidos::class, 'user_id');
+  }
 }
