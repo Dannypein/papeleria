@@ -4,6 +4,10 @@ use Session;
 
 class Cart {
 
+  public static function get() {
+    return new static;
+  }
+
   public function products() {
     return Session::get('cart', []);
   }
@@ -19,7 +23,7 @@ class Cart {
   }
 
   public function addProduct($product) {
-    $cart = session('cart', []);
+    $cart = Session::get('cart', []);
 
     $already_stored_product = $this->getProduct($product['id']);
     if ($already_stored_product) {
@@ -38,6 +42,10 @@ class Cart {
     return count( Session::get('cart', []) );
   }
 
+  public function total() {
+    return collect($this->products())->sum('subtotal');
+  }
+
   public function isEmpty() {
     return $this->count() <= 0;
   }
@@ -47,8 +55,8 @@ class Cart {
   }
 
   public function removeProduct($id) {
-    $cart = array_filter(session('cart', []), function($product) use ($id) { return $product['id'] != $id; });
-    session(['cart' => $cart]);
+    $cart = array_filter(Session::get('cart', []), function($product) use ($id) { return $product['id'] != $id; });
+    Session::put('cart', $cart);
   }
 
 }
