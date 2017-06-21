@@ -30,13 +30,13 @@
                                             <h6 style="font-weight: bold">Departamento</h6>
                                             @foreach($user as $u)
                                             <div class="checkbox" align="left">
-                                                <label><input type="checkbox" name="department_id" value="{{$u->id}}">{{$u->department}}</label>
+                                                <label><input type="checkbox" name="department_id" value="{{$u->id}}">&nbsp{{$u->department}}</label>
                                             </div>
                                             @endforeach
                                             <h6 style="font-weight: bold;">Empresa</h6>
                                             @foreach($user2 as $u2)
                                             <div class="checkbox" align="left">
-                                                <label><input type="checkbox" name="company_id" value="{{$u2->id}}">{{$u2->name_company}}</label>
+                                                <label><input type="checkbox" name="company_id" value="{{$u2->id}}">&nbsp{{$u2->name_company}}</label>
                                             </div>
                                             @endforeach
                                         </div>

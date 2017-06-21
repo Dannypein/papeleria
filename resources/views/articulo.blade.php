@@ -19,7 +19,7 @@
                                     </a>
                                 </div>
                             @endfor-->
-                            <div class="caption">
+                            <div class="caption" style="background-color: #eee;">
                                 <div class="panel-heading"><b>Detalles:</b></div>
                                 <div class="panel-body"><p>{{$details->details}}</p></div>
                             </div>
@@ -31,28 +31,28 @@
                             <!-- Default panel contents -->
                             <div class="panel-heading" style="background-color: #607d8b; color: white;">
                                 <a href="{{ URL::previous() }}"><button class="btn" style="float: left; color: black;">Regresar</button></a>
-                                <h5 style="color: white;">{{$details->name}}</h5>
+                                <h5 style="color: white;">Datos del articulo</h5>
                             </div>
                             <div class="panel-body">
-                                <div><h5 class="pull-left">Unidad:&nbsp{{$details->unit}}</h5></div>
-                                <div><h5 class="pull-right">Precio:&nbsp$&nbsp{{$details->price}}</h5></div>
-                                <div>
-                                    <select class="form-control" id="sel1">
-                                        <option>Pieza</option>
-                                        <option>Caja</option>
-                                    </select>
-                                    <input class="form-control input-sm" type="number" value="" placeholder="Cantidad a Agregar">
+                            <div class="well" style="background-color: #eee"><h5>{{$details->name}}</h5></div>
+                                <div class="col-md-6">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><b>Unidad:</b>&nbsp{{$details->unit}}</li>
+                                        <li class="list-group-item"><b>Precio:&nbsp</b>$&nbsp{{$details->price}}</li>
+                                        <li class="list-group-item"><b>SKU:</b>&nbsp{{$details->sku}}</li>
+                                        <li class="list-group-item"><b>Presentación:</b>&nbsp1{{$details->type}}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- List group -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><b>Modelo:</b>&nbsp{{$details->model}}</li>
+                                        <li class="list-group-item"><b>Marca:</b>&nbsp{{$details->brand}}</li>
+                                        <li class="list-group-item"><b>Tamaño:</b>&nbsp&nbsp{{$details->size}}</li>
+                                        <li class="list-group-item"><b>Peso:</b>&nbsp{{$details->weight}}</li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!-- List group -->
-                            <ul class="list-group">
-                                <li class="list-group-item"><b>Modelo:</b>&nbsp{{$details->model}}</li>
-                                <li class="list-group-item"><b>Marca:</b>&nbsp{{$details->brand}}</li>
-                                <li class="list-group-item"><b>Tamaño:</b>&nbsp&nbsp{{$details->size}}</li>
-                                <li class="list-group-item"><b>Peso:</b>&nbsp{{$details->weight}}</li>
-                                <li class="list-group-item"><b>Presentación:</b>&nbsp1{{$details->type}}</li>
-                                <li class="list-group-item"><b>SKU:</b>&nbsp{{$details->sku}}</li>
-                            </ul>
                             <div class="panel-footer">
                                 {!! add_to_cart_button($details) !!}
                             </div>

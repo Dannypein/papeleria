@@ -58,9 +58,9 @@
                               @endforeach
                             </tbody>
                           </table>
-                          <?php echo $products->render() ?>
                         </div>
                     </div>
+                    <?php echo $products->render() ?>
                 </div>
             </main>
         </div>

@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color: #607d8b; color: white;">
-                            <a href="{{ url('/admin/pedidos') }}"><button class="btn" style="float: left;">Regresar</button></a>
+                            <a href="{{ url('/desktop/pedidos') }}"><button class="btn" style="float: left;">Regresar</button></a>
                             <b style="color: white; font-size: 1.5em;">Datos del Pedido</b>
                         </div>
                         <div class="panel-body table-responsive">
@@ -24,7 +24,6 @@
                                     <th>Departamento</th>
                                     <th>Fecha de Creacion</th>
                                     <th>Estatus</th>
-                                    <th>Cambiar Status</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -41,21 +40,6 @@
                                         @elseif($p->status > 0)
                                             <td class="success">Entregado</td>
                                         @endif
-                                        <td>
-
-                                        <form method="POST" enctype="multipart/form-data" action="/admin/pedidos/status/update/{{$p->PedidoID}}">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <fieldset>
-                                                <div class="radio">
-                                                    <label><input type="radio" name="status" value="1" @if($p->status == 1) checked @endif>Entregado</label>
-                                                    <br>
-                                                    <label><input type="radio" name="status" value="0" @if($p->status == 0) checked @endif>Pendiente</label>
-                                                </div>
-                                                <button type="submit" class="btn btn-success" title="Cambiar"><i class="fa fa-check" aria-hidden="true"></i>&nbspCambiar</button>
-                                            </fieldset>
-                                        </form>
-
-                                        </td>
                                     </tr>
                                  @endforeach
                                 </tbody>
@@ -93,15 +77,15 @@
                                         <td>{{$p->price}}</td>
                                     </tr>
                                 @endforeach
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>Total:</td>
-                                    </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total:</td>
+                                </tr>
                                 </tbody>
                           </table>
                         </div>

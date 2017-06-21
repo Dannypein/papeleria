@@ -48,8 +48,8 @@
                                     <td>{{$users->department}}</td>
                                     <td>{{$users->updated_at}}</td>
                                     <td>
-                                        <a href="{{route('edit', [$users->id])}}"><button type="button" class="btn btn-info" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                        <a href="/admin/usuarios/{{$users->id}}/delete"><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                        <a href="{{route('edit', [$users->id])}}"><button type="button" class="btn btn-info btn-sm" title="Editar"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                        <a href="/admin/usuarios/{{$users->id}}/delete"><button type="button" class="btn btn-danger btn-sm" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
                                     </td>
                                   </tr>
                               @endforeach

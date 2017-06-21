@@ -38,7 +38,14 @@
                                         <!---->Accesorios de Computo
                                     @endif
                                     </li>
-                                    <li class="list-group-item"><b>Presentación:</b>&nbsp{{$products->type}}</li>
+                                    <li class="list-group-item">
+                                    @if($products->stock > 0)<!--Verde-->
+                                        <div class="well-sm" style="background: #4caf50; color: white;" ><b >Stock disponible:</b>&nbsp{{$products->stock}}</div>
+                                    @elseif($products->stock < 1)
+                                        <div class="well-sm" style="background: #f44336; color: white;"><b >Stock disponible:</b>&nbsp{{$products->stock}}</div>
+                                    @endif
+                                        
+                                    </li>
                                 </ul>
                                 <div class="well well-sm">
                                     <p>Imagen Anterior:</p>
@@ -101,12 +108,12 @@
                                             <div class="list-group-item ">
                                                 <input placeholder="Presentación" class="form-control" name="type" type="text" value="{{$products->type}}">
                                             </div>
-                                            <!--+++++POR AHORA EN BALNCO+++++-->
+                                            <!--+++++POR AHORA EN BALNCO XD ya estaba+++++-->
                                             <!--<div class="list-group-item ">
                                                 <input class="form-control" type="number" name="stock" value="" placeholder="Stock">
                                             </div>-->
                                             <div class="list-group-item ">
-                                            <label>Categoria del producto</label>
+                                                <label>Categoria del producto</label>
                                                 <select class="form-control" name="category">
                                                     <option @if($products->category === '1') selected @endif value="1">Papeleria y Oficina</option>
                                                     <option @if($products->category === '3') selected @endif value="3">Consumibles Originales</option>
@@ -114,6 +121,9 @@
                                                     <option @if($products->category === '2') selected @endif value="2">Accesorios de Computo</option>
                                                 </select>
                                                 
+                                            </div>
+                                            <div class="list-group-item ">
+                                                <input placeholder="Stock Disponible" class="form-control" name="stock" type="number" value="{{$products->stock}}">
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +136,10 @@
                                             <div class="list-group-item ">
                                                 <div class="radio">
                                                     <span>Disponible:</span>&nbsp&nbsp&nbsp
-                                                    <label><input type="radio" name="available" value="si" @if($products->available == 'si') checked @endif>SI</label>&nbsp&nbsp&nbsp&nbsp
+                                                    <label><input type="radio" name="available" value="si" @if($products->available == 'si') checked @endif>SI</label>
+
+                                                    &nbsp&nbsp&nbsp&nbsp
+                                                    
                                                     <label><input type="radio" name="available" value="no" @if($products->available == 'no') checked @endif>NO</label>
                                                 </div>
                                             </div>

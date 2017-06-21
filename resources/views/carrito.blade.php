@@ -45,7 +45,7 @@
                                     <td>$ {{$p['precio_unitario']}} MXN</td>
                                     <td>$ {{number_format($p['subtotal'], 2)}} MXN</td>
                                     <td>
-                                      <a href="{!! route('cart.delete') !!}"><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                      <a href=""><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
                                     </td>
                                   </tr>
                               @endforeach
@@ -54,7 +54,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total:  {{number_format($p['subtotal'], 2)}} MXN</td>
+                                <td>Total:</td>
                               </tr>
                               <tr>
                                 <td></td>

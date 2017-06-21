@@ -13,7 +13,7 @@
 	    </a>
 	    <a href="{{route('catalogo.disponible2')}}" class="list-group-item"><b>Disponibles</b></a>
 	    <a href="{{route('catalogo.reciente2')}}" class="list-group-item"><b>Recientes</b></a>
-	    <a href="{{route('catalogo.modificado2')}}" class="list-group-item"><b>Ultimas Modificaciones</b></a>
-	    <a href="{{route('catalogo.precio2')}}" class="list-group-item"><b>Mas baratos</b></a>
+	    <a href="{{route('catalogo.modificado2')}}" class="list-group-item"><b>Mayor Precio</b></a>
+	    <a href="{{route('catalogo.precio2')}}" class="list-group-item"><b>Menor Precio</b></a>
 	</div>
 </div>

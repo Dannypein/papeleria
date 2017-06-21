@@ -125,6 +125,11 @@ Route::get('/admin/pedidos/editar/pedido/{id}', [
 	'as' => 'editar_pedido'
 ]);
 
+Route::get('/desktop/pedidos/editar/pedido/{id}', [
+	'uses' => 'NormalController@pedido_show',
+	'as' => 'pedido_show'
+]);
+
 /*-----------Rutas de creacion----------------*/
 
 Route::get('/admin/usuarios/nuevo', [
@@ -176,22 +181,22 @@ Route::get('/admin/catalogo/disponibles',[
 
 /*-----------------------------------------------*/
 
-Route::get('/admin/catalogo/reciente',[
+Route::get('/desktop/catalogo/reciente',[
 		'as' => 'catalogo.reciente2',
 		'uses' => 'ProductsController@reciente2'
 	]);
 
-Route::get('/admin/catalogo/modificado',[
+Route::get('/desktop/catalogo/modificado',[
 		'as' => 'catalogo.modificado2',
 		'uses' => 'ProductsController@modificado2'
 	]);
 
-Route::get('/admin/catalogo/precios',[
+Route::get('/desktop/catalogo/precios',[
 		'as' => 'catalogo.precio2',
 		'uses' => 'ProductsController@precio2'
 	]);
 
-Route::get('/admin/catalogo/disponibles',[
+Route::get('/desktop/catalogo/disponibles',[
 		'as' => 'catalogo.disponible2',
 		'uses' => 'ProductsController@disponible2'
 	]);
@@ -235,6 +240,8 @@ Route::post('/admin/usuarios/nuevo/usuario/create', 'AdminController@create');
 Route::post('/admin/empresas/nueva/empresa/create', 'AdminController@create_empresa');
 
 Route::post('/admin/empresas/nuevo/departamento/create', 'AdminController@create_department');
+
+Route::post('/admin/pedidos/status/update/{id}', 'AdminController@update_status');
 
 /*--------*/
 
@@ -280,4 +287,3 @@ Route::post('/admin/productos/importar', [
 Route::get('/cart', ['as' =>'cart.show', 'uses' => 'CartController@show']);
 Route::post('/cart/add_product', ['as' => 'cart.add_product', 'uses' => 'CartController@addProduct']);
 Route::delete('/cart', ['as' =>'cart.destroy', 'uses' => 'CartController@destroy']);
-Route::delete('/cart', ['as' =>'cart.delete', 'uses' => 'CartController@delete']);
