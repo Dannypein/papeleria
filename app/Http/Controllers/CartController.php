@@ -38,6 +38,12 @@ class CartController extends Controller {
                              'token'          => csrf_token()]);
   }
 
+  public function removeProduct($id, Cart $cart) {
+    $cart->removeProduct($id);
+
+    return redirect()->back()->with('success', 'Producto removido del carrito.');
+  }
+
   /**
    * Vacía el carrito de compra del usuario actual.
    *
