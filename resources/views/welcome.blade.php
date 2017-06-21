@@ -42,21 +42,21 @@
                         <div class="row">
                         @foreach($products as $p)
                             <div class="col-md-3 col-sm-6 hero-feature">
-                                <div class="thumbnail">
+                                <div class="thumbnail" style="height: 100%;">
                                     <img style="height: 25vh;" src="{{asset('img/products/' . $p->id . '.jpg') }}" alt="">
                                     <div class="caption">
                                         <h4 class="pull-center">$&nbsp{{$p->price}}</h4>
-                                        <p style="font-size: 0.95em; font-weight: bold;" align="justify">{{str_limit($p->name, $limit = 30, $end = '...')}}</p>
+                                        <p style="font-weight: bold; font-size: 100%;" align="justify">{{$p->name}}</p>
                                         <p>SKU:&nbsp{{$p->sku}}</p>
                                         <p>
-                                            <a href="{{route('articulo', [$p->id])}}" class="btn btn-primary">Ver producto.</a>
+                                            <a href="{{route('articulo', [$p->id])}}" class="btn btn-primary">Ver producto</a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                         </div>
-                        <?php echo $products->render() ?>
+                    <?php echo $products->render() ?>
                 </div>
     		</main>
     	</div>
@@ -65,3 +65,18 @@
     </div>
 </body>
 @stop
+<!--
+                            <div class="col-md-3 col-sm-6 hero-feature">
+                                <div class="thumbnail">
+                                    <img style="height: 25vh;" src="{{asset('img/products/' . $p->id . '.jpg') }}" alt="">
+                                    <div class="caption">
+                                        <h4 class="pull-center">$&nbsp{{$p->price}}</h4>
+                                        <p style="font-size: 0.95em; font-weight: bold;" align="justify">{{str_limit($p->name, $limit = 22, $end = '...')}}</p>
+                                        <p>SKU:&nbsp{{$p->sku}}</p>
+                                        <p>
+                                            <a href="{{route('articulo', [$p->id])}}" class="btn btn-primary">Ver producto.</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+-->

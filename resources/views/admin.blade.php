@@ -15,8 +15,8 @@
                       <h4>Usuarios Registrados</h4><button id="btn1" class="button btn-primary">Ocultar</button><button id="btn2" class="button btn-primary">Mostrar</button>
                     </div>
                     <div class="panel-body" id="myDIV">
-                      <table class="table table-striped table-responsive">
-                        <thead>
+                      <table class="table table-striped table-responsive" style="font-weight: bold;">
+                        <thead style="background-color: #455a64; color: white">
                           <tr>
                             <th>Nombre de Usuario</th>
                             <th>Tipo</th>

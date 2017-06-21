@@ -31,8 +31,9 @@ class products extends Model {
       'name'        => array_get($row, 'descripcion'),
       'model'       => array_get($row, 'modelo'),
       'size'        => array_get($row, 'talla'),
-      'available'   => array_get($row, 'existencias'),
-      'category_id' => array_get($row, 'linea'),
+      'stock'   => array_get($row, 'existencias'),
+      'category' => array_get($row, 'linea'),
+      'available' => array_get($row, 'disponible'),
     ];
 
     return $data;

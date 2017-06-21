@@ -28,13 +28,8 @@
                               <tr>
                                 <th>Nombre del Producto</th>
                                 <th>SKU</th>
-                                <th>Modelo</th>
-                                <th>Marca</th>
-                                <th>Medidas</th>
                                 <th>Precio</th>
                                 <th>Disponibilidad</th>
-                                <th>Unidad</th>
-                                <th>Cantidad</th>
                                 <th>Agregar</th>
                               </tr>
                             </thead>
@@ -43,39 +38,20 @@
                                   <tr align="left">
                                     <td><a href="{{route('articulo', [$p->id])}}">{{$p->name}}</a></td>
                                     <td>{{$p->sku}}</td>
-                                    <td>{{$p->model}}</td>
-                                    <td>{{$p->type}}</td>
-                                    <td>{{$p->size}}</td>
                                     <td>{{$p->price}}</td>
-                                    @if($p->available == 'no')
-                                        <td class="danger">NO</td>
-                                        <td>
-                                            <select class="form-control" id="sel1">
-                                                <option>Pieza</option>
-                                                <option>Caja</option>
-                                            </select>
-                                        </td>
-                                        <td>
-                                            <input type="number" name="total_products" value="1" min="1" max="500">
-                                            <input type="hidden" name="articulos[][precio_unitario]" value="{{$p->price}}">
-                                        </td>
-                                        <td>
-                                            <a><button class="btn btn-primary disabled" title="agregar"><i class="fa fa-cart-plus" aria-hidden="true"></i></button></a>
-                                        </td>
-                                    @else
+                                    @if($p->available == 'si')
                                         <td class="success">SI</td>
                                         <td>
-                                            <select class="form-control" id="sel1">
-                                                <option>Pieza</option>
-                                                <option>Caja</option>
-                                            </select>
+                                            {!! add_to_cart_button($p) !!}
                                         </td>
+                                    @else
+                                        <td class="danger">NO</td>
                                         <td>
-                                            <input type="number" name="articulos[][total_products]" value="1" min="1" max="500">
-                                            <input type="hidden" name="articulos[][precio_unitario]" value="{{$p->price}}">
-                                        </td>
-                                        <td>
-                                            <a href="/carrito/nuevo"><button class="btn btn-primary" title="agregar"><i class="fa fa-cart-plus" aria-hidden="true"></i></button></a>
+                                            <div class="btn-add-cart-wrapper">
+                                                <button class="btn btn-primary btn-add-cart btn-block disabled">
+                                                    <i class="fa fa-shopping-cart"></i> Añadir al carrito
+                                                </button>
+                                            </div>
                                         </td>
                                     @endif
                                   </tr>
@@ -84,9 +60,7 @@
                           </table>
                         </div>
                     </div>
-                    <div class="row container">
-                        <?php echo $products->render() ?>
-                    </div>
+                    <?php echo $products->render() ?>
                 </div>
             </main>
         </div>

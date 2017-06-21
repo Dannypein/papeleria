@@ -17,7 +17,7 @@
 						<li><a href="{{ url('/') }}"><i class="fa fa-home" aria-hidden="true"></i>	Pagina</a></li>
 					@else
 						<li><a href="{{ url('/desktop') }}"><i class="fa fa-tachometer" aria-hidden="true"></i>	Panel de Control</a></li>
-						<li><a href="{{ url('/') }}"><i class="fa fa-shopping-basket" aria-hidden="true"></i>	Pagina de Compras</a></li>
+						<li><a href="{{ url('/') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i>	Pagina de Compras</a></li>
 					@endif
 				</ul>
 

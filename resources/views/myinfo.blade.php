@@ -19,18 +19,19 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" style="background-color: #607d8b; color: white;">
                             <a href="{{ url('/desktop') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                            <b style="color: white; font-size: 1.5em;">Pedidos</b>
+                            <b style="color: white; font-size: 1.5em;">Mi información</b>
                         </div>
                         <div class="panel-body">
                             <div class="panel-body">
                                     <div class="col-md-6">
-                                        <div class="well"><h5>Mis Datos</h5></div>
+                                        <div class="well" style="background-color: #eee"><h5>Mis Datos</h5></div>
                                         @foreach($user as $u)
                                         <ul class="list-group">
                                             <li class="list-group-item"><h6>Nombre:</h6>&nbsp<b>{{$u->name}}</b></li>
                                             <li class="list-group-item"><h6>Correo:</h6>&nbsp<b>{{$u->email}}</b></li>
                                             <li class="list-group-item"><h6>Empresa:</h6>&nbsp<b>{{$u->name_company}}</b></li>
                                             <li class="list-group-item"><h6>Departamento:</h6>&nbsp<b>{{$u->department}}</b></li>
+                                            <li class="list-group-item"><h6>Limite de Crédito Asignado:</h6>&nbsp<b>{{$u->credit_limit}}</b></li>
                                         </ul>
                                         @endforeach
                                     </div>
@@ -38,10 +39,10 @@
                                         <form method="POST" enctype="multipart/form-data" action="/desktop/usuarios/{{$u->id}}/update">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <fieldset>
-                                                <div class="well"><h5>Nuevos Datos</h5></div>
+                                                <div class="well" style="background-color: #eee"><h5>Nuevos Datos</h5></div>
                                                     <div class="list-group">
                                                         <div class="list-group-item ">
-                                                            <input placeholder="Nuevo Nombre" class="form-control" name="name" type="text" value="">
+                                                            <input placeholder="Nuevo Nombre" class="form-control" name="name" type="text" value="{{$u->name}}">
                                                         </div>
                                                         <div class="list-group-item ">
                                                             <input placeholder="Nueva Contraseña" class="form-control" name="password" type="password" value="">

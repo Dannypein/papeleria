@@ -76,7 +76,17 @@ class NormalController extends Controller {
 
 	public function pedidos_normal(){
 
-		$empresa = Pedidos::all();
+		$user = Auth::User();     
+        $id = $user->id;
+
+		$empresa = \DB::table('pedidos')
+		/**/
+		->where('users.id', $id)
+		->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*')
+		->join('users', 'users.id', '=', 'pedidos.user_id')
+		->orderby('PedidoID','DESC')
+		->paginate(15);
+		
 		return view('pedidos_n')->with('empresa', $empresa);	
 	}
 
@@ -102,9 +112,24 @@ class NormalController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
+	public function pedido_show($id){
+
+		$pedido = \DB::table('pedidos')
+		/**/
+		->where('pedidos.id', $id)
+		->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
+		->join('users', 'users.id', '=', 'pedidos.user_id')
+		->join('company', 'company.id', '=', 'users.company_id')
+		->join('departments', 'departments.id', '=', 'users.department_id')
+		->get();
+
+		$pedido2 = \DB::table('pedidos')
+		->where('products.id', $id)
+		->select('products.id as PID', 'pedidos.*', 'products.*')
+		->join('products', 'products.id', '=', 'pedidos.id')
+		->get();
+		
+		return view('pedido_show')->with('pedido', $pedido)->with('pedido2', $pedido2);
 	}
 
 	/**

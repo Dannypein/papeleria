@@ -20,15 +20,15 @@
                           <thead style="background-color: #455a64; color: white">
                             <tr>
                                 <th>Numero de Pedido</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
+                                <th>Cantidad de articulos</th>
+                                <th>Costo Total</th>
                                 <th>Status</th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach($pedidos as $p)
                                 <tr align="left">
-                                  <td>{{$p->id}}</td>
+                                  <td>{{$p->PedidoID}}</td>
                                   <td>{{$p->total_products}}</td>
                                   <td>{{$p->precio_total}}</td>
                                   @if($p->status < 1)

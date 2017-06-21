@@ -10,6 +10,7 @@ use papeleria\Company;
 use papeleria\Departments;
 use Illuminate\Contracts\Auth\Guard;
 use Input;
+use Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller {
@@ -31,12 +32,24 @@ class AdminController extends Controller {
 
 		if ($auth->user()->normal()) {
 
-			$pedidos = pedidos::orderBy('id', 'desc')->paginate(10);
+			$user = Auth::user();     
+        	$id = $user->id;
+
+
+			$pedidos = \DB::table('pedidos')
+			/**/
+			->where('users.id', $id)
+			->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*')
+			->join('users', 'users.id', '=', 'pedidos.user_id')
+			->orderby('PedidoID','DESC')
+			->paginate(15);
+
 			return view('desktop')->with('pedidos', $pedidos);
 
 		} else {
 
 			return redirect('/admin');
+
 		}
 
 	}
@@ -116,7 +129,7 @@ class AdminController extends Controller {
 		->join('users', 'users.id', '=', 'pedidos.user_id')
 		->join('company', 'company.id', '=', 'users.company_id')
 		->join('departments', 'departments.id', '=', 'users.department_id')
-		->orderby('PedidoID','ASC')
+		->orderby('PedidoID','DESC')
 		->paginate(15);
 		
 		return view('pedidos')->with('pedidos', $pedidos);
@@ -203,6 +216,16 @@ class AdminController extends Controller {
 		->get();
 
 		return view('edit_pedido')->with('pedido', $pedido)->with('pedido2', $pedido2);
+	}
+
+
+	public function update_status($id){
+
+		$pedido = pedidos::find($id);
+		$pedido->status = Input::get('status');
+		$pedido->save();
+
+		return Redirect('/admin/pedidos')->with('alert', 'Status del Pedido Modificado');
 	}
 
 /*--------------------Controllers de Creacion--------------------*/
@@ -299,6 +322,7 @@ class AdminController extends Controller {
 		$products->type = Input::get('type');
 		$products->available = strtolower(Input::get('available'));
 		$products->category = Input::get('category');
+		$products->stock = Input::get('stock');
 		$products->details = Input::get('details');
 
 		if ($imagen = Input::file('file')) {
@@ -324,6 +348,7 @@ class AdminController extends Controller {
 		$products->type = Input::get('type');
 		$products->available = strtolower(Input::get('available'));
 		$products->category = Input::get('category');
+		$products->stock = Input::get('stock');
 		$products->details = Input::get('details');
 		$products->save();
 
