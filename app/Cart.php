@@ -46,4 +46,9 @@ class Cart {
     return Session::forget('cart');
   }
 
+  public function removeProduct($id) {
+    $cart = array_filter(session('cart', []), function($product) use ($id) { return $product['id'] != $id; });
+    session(['cart' => $cart]);
+  }
+
 }

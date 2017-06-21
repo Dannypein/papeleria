@@ -45,7 +45,13 @@
                                     <td>$ {{$p['precio_unitario']}} MXN</td>
                                     <td>$ {{number_format($p['subtotal'], 2)}} MXN</td>
                                     <td>
-                                      <a href="{!! route('cart.delete') !!}"><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                      <form method="post" action="{!! route('cart.remove_product', $p['id']) !!}">
+                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="btn btn-danger" type="submit" title="Remover artículo del carrito">
+                                          <i class="fa fa-close"></i>
+                                        </button>
+                                      </form>
                                     </td>
                                   </tr>
                               @endforeach
@@ -54,7 +60,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total:  {{number_format($p['subtotal'], 2)}} MXN</td>
+                                <td>Total:  ${{ number_format(collect($products)->sum('subtotal'), 2) }} MXN</td>
                               </tr>
                               <tr>
                                 <td></td>
