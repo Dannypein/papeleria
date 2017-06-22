@@ -14,9 +14,9 @@ class CartController extends Controller {
    * @return Response
    */
 	public function show(Cart $cart) {
-    $products = $cart->products();
 
-    return view('carrito', compact('products'));
+    $products = $cart->products();
+    return view('carrito', compact('products'), ['cart' => $cart]);
   }
 
   /**
@@ -38,6 +38,12 @@ class CartController extends Controller {
                              'token'          => csrf_token()]);
   }
 
+  public function removeProduct($id, Cart $cart) {
+    $cart->removeProduct($id);
+
+    return redirect()->back()->with('success', 'Producto removido del carrito.');
+  }
+
   /**
    * Vacía el carrito de compra del usuario actual.
    *
@@ -46,9 +52,10 @@ class CartController extends Controller {
    * @return Response
    */
   public function destroy(Cart $cart) {
-    $cart->reset();
 
+    $cart->reset();
     return redirect()->back()->with('success', 'Carrito vaciado.');
+
   }
 
 }

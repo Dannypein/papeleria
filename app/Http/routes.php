@@ -247,7 +247,7 @@ Route::post('/admin/pedidos/status/update/{id}', 'AdminController@update_status'
 
 Route::post('/desktop/usuarios/{id}/update', 'NormalController@update');
 
-Route::post('/desktop/usuarios/catalogo/agregar/{id}', ['uses' => 'NormalController@create', 'as' => 'pedido.create']);
+Route::post('/desktop/usuarios/catalogo/agregar', ['uses' => 'NormalController@create', 'as' => 'pedido.create']);
 
 /*----rutas de las vistas del menu izquierdo----*/
 
@@ -285,5 +285,6 @@ Route::post('/admin/productos/importar', [
 
 /*----rutas para el cart----*/
 Route::get('/cart', ['as' =>'cart.show', 'uses' => 'CartController@show']);
-Route::post('/cart/add_product', ['as' => 'cart.add_product', 'uses' => 'CartController@addProduct']);
+Route::post('/cart/add_product', ['as' => 'cart.add_product', 'uses' => 'CartController@addProduct', 'middleware' => 'check_credit_limit']);
+Route::delete('/cart/{id}', ['as' =>'cart.remove_product', 'uses' => 'CartController@removeProduct']);
 Route::delete('/cart', ['as' =>'cart.destroy', 'uses' => 'CartController@destroy']);

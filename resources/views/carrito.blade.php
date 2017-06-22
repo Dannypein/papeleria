@@ -8,16 +8,19 @@
         @include('app')
             <main>
               @if ($message = session('success'))
-                <div class="alert alert-success">
-                  <b>{{ $message }}</b>
+                <div class="col-md-12">
+                    <div class="alert alert-dismissible alert-success">
+                        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
+                        <strong>{{ $message }}</strong>
+                    </div>
                 </div>
               @endif
 
                 <div class="col-md-12">
                   <div class="panel panel-default">
                     <div class="panel-heading" style="background-color: #607d8b; color: white;">
-                        <a href="{{ url('/desktop') }}"><button class="btn" style="float: left;">Regresar</button></a>
-                        <b style="color: white; font-size: 1.5em;">Mi carrito de compra</b>
+                        <a href="{{ url('/home') }}"><button class="btn" style="float: left;">Regresar</button></a>
+                        <b style="color: white; font-size: 1.5em;"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbspMi canasta de compra</b>
                         <form style="float: right" method="post" action="{!! route('cart.destroy') !!}">
                           <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                           <input type="hidden" name="_method" value="delete">
@@ -25,6 +28,14 @@
                         </form>
                     </div>
                     <div class="panel-body table-responsive">
+                    @if ($errors->count() > 0)
+                      <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
+                        @foreach ($errors->all() as $error)
+                          <p>{{ $error }}</p>
+                        @endforeach
+                      </div>
+                    @endif
                         <table style="font-weight: bold" class="table table-condensed table-responsive table-in-cart">
                             <thead style="background-color: #455a64; color: white" >
                               <tr>
@@ -39,13 +50,21 @@
                             <tbody>
                               @foreach($products as $p)
                                   <tr align="left">
-                                    <td><img class="img-in-cart" src="{!! asset('img/products/' . $p['id'] . '.jpg') !!}"></td>
+                                    <td>
+                                      <img class="img-in-cart" src="{!! asset('img/products/' . $p['id'] . '.jpg') !!}">
+                                    </td>
                                     <td>{{$p['nombre']}}</td>
                                     <td>{{$p['cantidad']}}</td>
                                     <td>$ {{$p['precio_unitario']}} MXN</td>
                                     <td>$ {{number_format($p['subtotal'], 2)}} MXN</td>
                                     <td>
-                                      <a href=""><button type="button" class="btn btn-danger" title="Eliminar"><i class="fa fa-times-circle" aria-hidden="true"></i></button></a>
+                                      <form method="post" action="{!! route('cart.remove_product', $p['id']) !!}">
+                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="btn btn-danger" type="submit" title="Remover artículo del carrito">
+                                          <i class="fa fa-close"></i>
+                                        </button>
+                                      </form>
                                     </td>
                                   </tr>
                               @endforeach
@@ -54,7 +73,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Total:</td>
+                                <td>Total:  ${{ number_format(collect($products)->sum('subtotal'), 2) }} MXN</td>
                               </tr>
                               <tr>
                                 <td></td>
@@ -62,9 +81,18 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                  <form style="float: right" method="post" action="{!! route('pedido.create') !!}">
+                                  <form style="float: right" method="POST" action="{!! route('pedido.create') !!}">
                                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                    <button type="submit" class="btn btn-success">Realizar Pedido</button>
+                                    @unless ($cart->isEmpty())
+                                      <button type="submit" class="btn btn-success">Realizar Pedido</button>
+                                    @endunless
+                                    
+                                    <tr>
+                                      <div class="form-group">
+                                        <label for="comment">Detalles del pedido:</label>
+                                        <textarea class="form-control" rows="1" name="details" placeholder="Agregue un Comentario"></textarea>
+                                      </div>
+                                    </tr>
                                   </form>
                                 </td>
                               </tr>
