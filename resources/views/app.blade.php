@@ -30,7 +30,7 @@
 							<a href="{{ url('cart') }}"><i class="fa fa-shopping-basket" aria-hidden="true">
 								</i>&nbspMi Canasta&nbsp
 								<span class="badge">
-									0
+									{{ $count->count() }}
 								</span>
 							</a>
 						</li>

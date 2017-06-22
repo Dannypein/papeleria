@@ -26,6 +26,10 @@ class AdminController extends Controller {
 	public function __construct(){
 
 		$this->middleware('auth');
+
+		$count = Cart::get();
+    	\View::share('count', $count);
+
 		/*guest sirve para cuando NO este logueado todos puedan ver las view
 		y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views*/
 	}

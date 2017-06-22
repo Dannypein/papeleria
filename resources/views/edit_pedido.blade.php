@@ -84,7 +84,7 @@
                                 <tbody>
                                 @foreach($productos as $p)
                                     <tr align="left">
-                                        <td>{{$p->id}}</td>
+                                        <td>{{$p->sku}}</td>
                                         <td>{{$p->nombre}}</td>
                                         <td>{{$p->cantidad}}</td>
                                         <td>$   {{$p->precio_unitario}}</td>
@@ -101,9 +101,9 @@
                                 </tbody>
                             </table>
                             <div class="well" style="background-color: #eee;">
-                            <span><b>Detalles del pedido:</b></span>
-                            <br>
-                                @foreach($pedido as $p){{$p->details}}@endforeach
+                                <span><b>Detalles del pedido:</b></span>
+                                <br>
+                                    @foreach($pedido as $p){{$p->details}}@endforeach
                             </div>
                         </div>
                     </div>

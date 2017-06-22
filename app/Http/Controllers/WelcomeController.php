@@ -2,6 +2,7 @@
 
 use papeleria\Products;
 use Illuminate\Http\Request;
+use papeleria\Cart;
 use papeleria\Http\Controllers\Controller;
 use Fileentry;
 
@@ -23,12 +24,13 @@ class WelcomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	/*public function __construct()
+	public function __construct()
 	{
-		$this->middleware('guest');
-		guest sirve para cuando NO este logueado todos puedan ver las view
-		y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views
-	}*/
+		$count = Cart::get();
+    	\View::share('count', $count);
+		/*guest sirve para cuando NO este logueado todos puedan ver las view
+		y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views*/
+	}
 
 	/**
 	 * Show the application welcome screen to the user.
