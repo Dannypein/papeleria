@@ -11,7 +11,9 @@ use papeleria\Departments;
 use Illuminate\Contracts\Auth\Guard;
 use Input;
 use Auth;
+use papeleria\Cart;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class AdminController extends Controller {
 
@@ -203,19 +205,17 @@ class AdminController extends Controller {
 		$pedido = \DB::table('pedidos')
 		/**/
 		->where('pedidos.id', $id)
-		->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
+		->select('pedidos.id as PedidoID', 'pedidos.created_at as Pcreate', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
 		->join('users', 'users.id', '=', 'pedidos.user_id')
 		->join('company', 'company.id', '=', 'users.company_id')
 		->join('departments', 'departments.id', '=', 'users.department_id')
 		->get();
 
-		$pedido2 = \DB::table('pedidos')
-		->where('products.id', $id)
-		->select('products.id as PID', 'pedidos.*', 'products.*')
-		->join('products', 'products.id', '=', 'pedidos.id')
-		->get();
+		$pedido3 = pedidos::find($id);
+		$productos = json_decode($pedido3->articulos);
+		
 
-		return view('edit_pedido')->with('pedido', $pedido)->with('pedido2', $pedido2);
+		return view('edit_pedido')->with('pedido', $pedido)->with('productos', $productos);
 	}
 
 

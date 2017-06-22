@@ -11,7 +11,9 @@ use papeleria\Departments;
 use Illuminate\Contracts\Auth\Guard;
 use Input;
 use Auth;
+use papeleria\Cart;
 use Illuminate\Support\Facades\DB;
+use papeleria\Http\Requests\ValidarCarritoRequest;
 
 class NormalController extends Controller {
 
@@ -57,7 +59,7 @@ class NormalController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(ValidarCarritoRequest $request)
 	{
 
 		$user = Auth::User();     
@@ -67,11 +69,14 @@ class NormalController extends Controller {
 
 		$products->user_id = $id;
 		$products->status = '0';
-		$products->total_products = Input::get('total_products');
-		$pedido = Input::get('articulos');
-		$products->articulos = json_encode($pedido);
+		$cart = Cart::get();
+		$products->precio_total = $cart->total();
+		$products->total_products = $cart->count();
+        $products->articulos = json_encode($cart->products());
+        $products->email_user = 'luigidanny@hotmail.com';
+        $products->details = Input::get('details');
 		
-		return Redirect('/desktop')->with($products->save())->with('alert', 'Pedido Creado');
+		return Redirect('/desktop')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
 	}
 
 	public function pedidos_normal(){

@@ -16,7 +16,11 @@ class Pedidos extends Model {
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['id', 'id_user', 'total', 'cantidad', 'email_user', 'email_receiver', 'details'];
+	protected $fillable = ['id', 'id_user', 'total_products', 'status', 'articulos', 'email_user', 'details'];
 
+
+	public static function scopePendientes($query) {
+	  return $query->where('status', 1);
+  }
 
 }
