@@ -26,6 +26,9 @@ class NormalController extends Controller {
 	public function __construct(){
 
 		$this->middleware('auth');
+		$count = Cart::get();
+    	\View::share('count', $count);
+    	
 		/*guest sirve para cuando NO este logueado todos puedan ver las view
 		y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views*/
 	}
@@ -122,19 +125,16 @@ class NormalController extends Controller {
 		$pedido = \DB::table('pedidos')
 		/**/
 		->where('pedidos.id', $id)
-		->select('pedidos.id as PedidoID', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
+		->select('pedidos.id as PedidoID', 'pedidos.created_at as Pcreate', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
 		->join('users', 'users.id', '=', 'pedidos.user_id')
 		->join('company', 'company.id', '=', 'users.company_id')
 		->join('departments', 'departments.id', '=', 'users.department_id')
 		->get();
 
-		$pedido2 = \DB::table('pedidos')
-		->where('products.id', $id)
-		->select('products.id as PID', 'pedidos.*', 'products.*')
-		->join('products', 'products.id', '=', 'pedidos.id')
-		->get();
+		$pedido3 = pedidos::find($id);
+		$productos = json_decode($pedido3->articulos);
 		
-		return view('pedido_show')->with('pedido', $pedido)->with('pedido2', $pedido2);
+		return view('pedido_show')->with('pedido', $pedido)->with('productos', $productos);
 	}
 
 	/**

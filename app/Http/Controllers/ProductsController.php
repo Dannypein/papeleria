@@ -3,12 +3,23 @@
 use Carbon\Carbon;
 use DB;
 use Excel;
+use papeleria\Cart;
 use papeleria\Http\Requests\ImportarArticulosRequest;
 use papeleria\products;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class productscontroller extends Controller
 {
+
+  public function __construct(){
+
+    $count = Cart::get();
+      \View::share('count', $count);
+
+    /*guest sirve para cuando NO este logueado todos puedan ver las view
+    y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views*/
+  }
+
 
   /**
    * Display a listing of the resource.
