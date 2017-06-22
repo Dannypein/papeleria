@@ -5,6 +5,7 @@ use papeleria\products;
 if ( ! function_exists('add_to_cart_button')) {
   function add_to_cart_button(products $product) {
     $id    = $product->id;
+    $sku   = $product->sku;
     $name  = $product->name;
     $price = $product->price;
     $token = csrf_token();
@@ -16,6 +17,7 @@ if ( ! function_exists('add_to_cart_button')) {
   </button>
   <form class="count-input" hidden>
     <input type="hidden" name="product[id]" value="{$id}">
+    <input type="hidden" name="product[sku]" value="{$sku}">
     <input type="hidden" name="product[nombre]" value="{$name}">
     <input type="hidden" name="product[precio_unitario]" value="{$price}">
     <input type="hidden" name="_token" value="{$token}">
