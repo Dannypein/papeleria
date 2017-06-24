@@ -159,6 +159,8 @@ Route::get('/catalogo/buscar','NormalController@search2');
 
 Route::get('/admin/catalogo/buscar','AdminController@search3');
 
+/*----RUtas de busqueda Especifica----*/
+
 Route::get('/admin/catalogo/reciente',[
 		'as' => 'catalogo.reciente',
 		'uses' => 'ProductsController@reciente'
@@ -169,9 +171,14 @@ Route::get('/admin/catalogo/modificado',[
 		'uses' => 'ProductsController@modificado'
 	]);
 
-Route::get('/admin/catalogo/precios',[
+Route::get('/admin/catalogo/precios/menor',[
 		'as' => 'catalogo.precio',
 		'uses' => 'ProductsController@precio'
+	]);
+
+Route::get('/admin/catalogo/precios/mayor',[
+		'as' => 'catalogo.preciomayor',
+		'uses' => 'ProductsController@preciomayor'
 	]);
 
 Route::get('/admin/catalogo/disponibles',[
@@ -179,7 +186,7 @@ Route::get('/admin/catalogo/disponibles',[
 		'uses' => 'ProductsController@disponible'
 	]);
 
-/*-----------------------------------------------*/
+/*---------------*/
 
 Route::get('/desktop/catalogo/reciente',[
 		'as' => 'catalogo.reciente2',
@@ -228,6 +235,16 @@ Route::post('/admin/product/edit/{id}', [
 Route::POST('/admin/catalogo/producto/nuevo', [
 	'uses' => 'AdminController@create_p',
 	'as' => 'create_p'
+]);
+
+Route::post('/contacto/correo', [
+	'as'   => 'contacto.correo',
+	'uses' => 'ContactoController@index'
+]);
+
+Route::post('/desktop/pedidos/renviar/{id}', [
+	'as'   => 'contacto.send',
+	'uses' => 'ContactoController@send'
 ]);
 
 

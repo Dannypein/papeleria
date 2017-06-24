@@ -28,7 +28,7 @@ class Kernel extends HttpKernel {
       'auth'               => 'papeleria\Http\Middleware\Authenticate',
       'auth.basic'         => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
       'guest'              => 'papeleria\Http\Middleware\RedirectIfAuthenticated',
-      'check_credit_limit' => CheckIfCanAffordProduct::class,
+      'check_credit_limit' => 'papeleria\Http\Middleware\CheckIfCanAffordProduct',
     ];
 
 }

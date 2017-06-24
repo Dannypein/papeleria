@@ -8,6 +8,14 @@
         @include('template.partials.menu')
             <main>
                  <!-- Content Row -->
+                 @if (isset($enviado) && $enviado)
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
+                            <strong>Su correo se ha enviado con éxito. Pronto estaremos en contacto con usted. Gracias.</strong>
+                        </div>
+                    </div>
+                 @endif
                 <div class="col-md-2"></div>
                     <!-- Contact Details Column -->
                     <div class="col-md-8" style="background-color: white; font-weight: bold; font-size: 1.2em;">
@@ -48,35 +56,29 @@
                     <div class="col-md-3"></div>
                     <div class="col-md-6"  style="background-color: white;">
                         <h3>¡Mandanos un mensaje!</h3>
-                        <form name="sentMessage" id="contactForm" novalidate>
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    <label>Nombre Completo:</label>
-                                    <input type="text" class="form-control" placeholder="Nombre" id="name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block"></p>
+                        <form method='post' action="{{ route('contacto.correo') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Nombre">
                                 </div>
-                            </div>
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    <label>Número de Telefono:</label>
-                                    <input type="tel" class="form-control" placeholder="Telefono" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
-                            </div>
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    <label>Dirrección de Email:</label>
-                                    <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your email address.">
+                                <div class="form-group">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="phone" class="form-control" name="phone" placeholder="Teléfono">
                                 </div>
-                            </div>
-                            <div class="control-group form-group">
-                                <div class="controls">
-                                    <label>Menesaje:</label>
-                                    <textarea rows="10" cols="100" class="form-control" placeholder="Menesaje" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
+                                <div class="form-group">
+                                    <label for="comment">Comentario</label>
+                                    <textarea class="form-control" name="comment" placeholder="Comentario"></textarea>
                                 </div>
-                            </div>
-                            <div id="success"></div>
-                            <!-- For success/fail messages -->
-                            <button type="submit" class="btn btn-primary"  style="margin-bottom: 1em;">Enviar Mensaje</button>
+                                <div id="success"></div>
+                                <!-- For success/fail messages -->
+                                <button type="submit" class="btn btn-primary"  style="margin-bottom: 1em;">Enviar Mensaje</button>
+                            </fieldset>
                         </form>
                     </div>
                     <div class="col-md-3"></div>
