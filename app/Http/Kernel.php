@@ -1,7 +1,6 @@
 <?php namespace papeleria\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use papeleria\Http\Middleware\CheckIfCanAffordProduct;
 
 class Kernel extends HttpKernel {
 
@@ -28,7 +27,7 @@ class Kernel extends HttpKernel {
       'auth'               => 'papeleria\Http\Middleware\Authenticate',
       'auth.basic'         => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
       'guest'              => 'papeleria\Http\Middleware\RedirectIfAuthenticated',
-      'check_credit_limit' => CheckIfCanAffordProduct::class,
+      'check_credit_limit' => 'papeleria\Http\Middleware\CheckIfCanAffordProduct',
     ];
 
 }
