@@ -8,7 +8,7 @@
         @include('app')
             <main>
                 @if(\Session::has('alert'))
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
                         <strong>{{Session::get('alert')}}</strong>

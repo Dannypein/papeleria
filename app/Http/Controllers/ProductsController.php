@@ -59,6 +59,12 @@ class productscontroller extends Controller
     return view('catalogo')->with('products', $products);
   }
 
+    public function preciomayor(){
+
+    $products = products::orderBy('price', 'desc')->paginate(15);
+    return view('catalogo')->with('products', $products);
+  }
+
   public function disponible(){
 
     $products = products::orderBy('available', 'si')->paginate(15);

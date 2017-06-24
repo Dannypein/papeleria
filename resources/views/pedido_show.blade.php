@@ -87,6 +87,20 @@
                                 <br>
                                     @foreach($pedido as $p){{$p->details}}@endforeach
                             </div>
+                            <form method='post' action="{{route('contacto.send', [$p->PedidoID])}}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <fieldset>
+                                @foreach($productos as $p)
+                                    <input type="hidden" class="form-control" value="{{$p->sku}}" name="sku">
+                                    <input type="hidden" class="form-control" value="{{$p->nombre}}" name="nombre">
+                                    <input type="hidden" class="form-control" value="{{$p->cantidad}}" name="cantidad">
+                                    <input type="hidden" class="form-control" value="{{$p->precio_unitario}}" name="precio_u">
+                                    <input type="hidden" class="form-control" value="{{$p->subtotal}}" name="subtotal">
+                                    <input type="hidden" class="form-control" value="{{ number_format(collect($productos)->sum('subtotal'), 2) }}" name="total">
+                                @endforeach
+                                </fieldset>
+                                <a href=""><button type="submit" class="btn btn-primary" title="Revisar"><i class="fa fa-envelope-o" aria-hidden="true"></i></button></a>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -97,3 +111,4 @@
     </div>
 </body>
 @stop
+
