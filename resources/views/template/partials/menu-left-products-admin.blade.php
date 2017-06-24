@@ -14,7 +14,8 @@
 	    <a href="{{route('catalogo.disponible')}}" class="list-group-item"><b>Disponibles</b></a>
 	    <a href="{{route('catalogo.reciente')}}" class="list-group-item"><b>Recientes</b></a>
 	    <a href="{{route('catalogo.modificado')}}" class="list-group-item"><b>Ultimas Modificaciones</b></a>
-	    <a href="{{route('catalogo.precio')}}" class="list-group-item"><b>Mas baratos</b></a>
+	    <a href="{{route('catalogo.precio')}}" class="list-group-item"><b>Menor Precio</b></a>
+	    <a href="{{route('catalogo.preciomayor')}}" class="list-group-item"><b>Mayor Precio</b></a>
 	    <a href="" class="list-group-item"></a>
 	    <a href="{{route('nuevo_product')}}" class="list-group-item"><b>Nuevo Articulo</b></a>
 	</div>
