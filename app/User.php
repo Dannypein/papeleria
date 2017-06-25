@@ -50,6 +50,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	}
 
 	public function pedidos() {
-	  return $this->hasMany('papeleria/Pedidos', 'user_id');
+	  return $this->hasMany('papeleria\Pedidos', 'user_id');
   }
 }
