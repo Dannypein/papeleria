@@ -6,3 +6,5 @@
  IP: 199.168.190.146
  Username: ofimedia
  Password: aDm1K8o7w5
+
+ Pass: SSH: cJB4E2R5g#&_

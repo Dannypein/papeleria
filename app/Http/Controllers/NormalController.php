@@ -79,7 +79,7 @@ class NormalController extends Controller {
         $products->email_user = 'luigidanny@hotmail.com';
         $products->details = Input::get('details');
 		
-		return Redirect('/desktop')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
+		return Redirect('/desktop/pedidos')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
 	}
 
 	public function pedidos_normal(){

@@ -14,7 +14,7 @@ class Category extends Model {
   protected $fillable   = ['*'];
 
   public function products() {
-    return $this->hasMany('papeleria/products');
+    return $this->hasMany('papeleria\products');
   }
 
 }
