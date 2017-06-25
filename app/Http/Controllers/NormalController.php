@@ -62,7 +62,7 @@ class NormalController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create(ValidarCarritoRequest $request)
+	public function create(ValidarCarritoRequest $request, Request $peticion)
 	{
 
 		$user = Auth::User();     
@@ -78,6 +78,14 @@ class NormalController extends Controller {
         $products->articulos = json_encode($cart->products());
         $products->email_user = 'luigidanny@hotmail.com';
         $products->details = Input::get('details');
+
+        $datos = $peticion->except('_token');
+
+        \Mail::send('emails.send', $datos, function($mail) {
+	      $mail->to('luigidanny@hotmail.com');
+	      $mail->subject('Contacto desde Ofimedia Papeleria');
+	      $mail->from('ticonsultoresmzo@hotmail.com');
+	    });
 		
 		return Redirect('/desktop/pedidos')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
 	}
