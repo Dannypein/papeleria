@@ -11,6 +11,7 @@ use papeleria\Departments;
 use Illuminate\Contracts\Auth\Guard;
 use Input;
 use Auth;
+use Mail;
 use papeleria\Cart;
 use Illuminate\Support\Facades\DB;
 use papeleria\Http\Requests\ValidarCarritoRequest;
@@ -62,7 +63,7 @@ class NormalController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create(ValidarCarritoRequest $request, Request $peticion)
+	public function create(ValidarCarritoRequest $request)
 	{
 
 		$user = Auth::User();     
@@ -78,16 +79,23 @@ class NormalController extends Controller {
         $products->articulos = json_encode($cart->products());
         $products->email_user = 'luigidanny@hotmail.com';
         $products->details = Input::get('details');
+        
+        $datos = json_decode($products->articulos);
+        $datos1 = array(
+        	'sku' => $products->sku,
+        	'nombre' => $products->nombre,
+        	'precio_u' => $products->precio_unitario,
+        	'cantidad' => $products->cantidad,
+        	'total' => $products->precio_total,
+        );
 
-        $datos = $peticion->except('_token');
-
-        \Mail::send('emails.send', $datos, function($mail) {
+       Mail::send('emails.send', $datos1, function($mail) {
 	      $mail->to('luigidanny@hotmail.com');
-	      $mail->subject('Contacto desde Ofimedia Papeleria');
+	      $mail->subject('Pedido de Ofimedia Papeleria');
 	      $mail->from('ticonsultoresmzo@hotmail.com');
 	    });
 		
-		return Redirect('/desktop/pedidos')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
+		return Redirect('/home')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
 	}
 
 	public function pedidos_normal(){

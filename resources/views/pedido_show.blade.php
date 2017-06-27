@@ -81,8 +81,8 @@
                                     <td><b>Total:  {{ number_format(collect($productos)->sum('subtotal'), 2) }}</b></td>
                                 </tr>
                                 </tbody>
-                          </table>
-                          <div class="well" style="background-color: #eee;">
+                            </table>
+                            <div class="well" style="background-color: #eee;">
                                 <span><b>Detalles del pedido:</b></span>
                                 <br>
                                     @foreach($pedido as $p){{$p->details}}@endforeach
@@ -99,7 +99,7 @@
                                     <input type="hidden" class="form-control" value="{{ number_format(collect($productos)->sum('subtotal'), 2) }}" name="total">
                                 @endforeach
                                 </fieldset>
-                                <a href=""><button type="submit" class="btn btn-primary" title="Revisar"><i class="fa fa-envelope-o" aria-hidden="true"></i></button></a>
+                                <a href=""><button type="submit" class="btn btn-primary" title="Enviar por Correo"><i class="fa fa-envelope-o" aria-hidden="true"></i></button></a>
                             </form>
                         </div>
                     </div>

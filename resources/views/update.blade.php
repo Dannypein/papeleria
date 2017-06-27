@@ -39,13 +39,12 @@
                                     @endif
                                     </li>
                                     <li class="list-group-item">
-                                    @if($products->stock > 0)<!--Verde-->
+                                    <!--@if($products->stock > 0)
                                         <div class="well-sm" style="background: #4caf50; color: white;" ><b >Stock disponible:</b>&nbsp{{$products->stock}}</div>
                                     @elseif($products->stock < 1)
                                         <div class="well-sm" style="background: #f44336; color: white;"><b >Stock disponible:</b>&nbsp{{$products->stock}}</div>
                                     @endif
-                                        
-                                    </li>
+                                    </li>-->
                                 </ul>
                                 <div class="well well-sm">
                                     <p>Imagen Anterior:</p>
@@ -100,7 +99,7 @@
                                     <div class="col-md-6">
                                         <div class="list-group">
                                             <div class="list-group-item ">
-                                                <input placeholder="Precio" class="form-control" name="price" type="number" value="{{$products->price}}">
+                                                <input placeholder="Precio" class="form-control" name="price" type="number" step="any" value="{{$products->price}}">
                                             </div>
                                             <div class="list-group-item ">
                                                 <input placeholder="Peso" class="form-control" name="weight" type="text" value="{{$products->weight}}">
