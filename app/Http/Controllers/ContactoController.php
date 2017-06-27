@@ -46,7 +46,7 @@ class ContactoController extends Controller {
 
 	    \Mail::send('emails.send', $datos, function($mail) {
 	      $mail->to('luigidanny@hotmail.com');
-	      $mail->subject('Contacto desde Ofimedia Papeleria');
+	      $mail->subject('Pedido de Ofimedia Papeleria');
 	      $mail->from('ticonsultoresmzo@hotmail.com');
 	    });
 

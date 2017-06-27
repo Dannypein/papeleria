@@ -54,7 +54,7 @@
                                 <div class="col-md-6">
                                     <div class="list-group">
                                         <div class="list-group-item ">
-                                            <input placeholder="Precio" class="form-control" name="price" type="number" value="">
+                                            <input placeholder="Precio" class="form-control" name="price" type="number" step="any" value="">
                                         </div>
                                         <div class="list-group-item ">
                                             <input placeholder="Peso" class="form-control" name="weight" type="text" value="">

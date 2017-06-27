@@ -22,6 +22,15 @@
                             <div class="caption" style="background-color: #eee;">
                                 <div class="panel-heading"><b>Detalles:</b></div>
                                 <div class="panel-body"><p>{{$details->details}}</p></div>
+                                @if($details->available == 'si')
+                                    <div class="alert alert-success">
+                                        Disponible: <strong>SI</strong>
+                                    </div>
+                                @else
+                                    <div class="alert alert-danger">
+                                        Disponible: <strong>NO</strong>
+                                    </div>
+                                @endif
                             </div>
                             <br>
                         </div>
@@ -54,7 +63,14 @@
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                {!! add_to_cart_button($details) !!}
+                            @if($details->available == 'si')
+                                    {!! add_to_cart_button($details) !!}
+                                @else
+                                    <div class="alert alert-danger">
+                                        <strong>Producto no disponible</strong>
+                                    </div>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>

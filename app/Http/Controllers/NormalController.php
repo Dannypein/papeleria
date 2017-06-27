@@ -11,6 +11,7 @@ use papeleria\Departments;
 use Illuminate\Contracts\Auth\Guard;
 use Input;
 use Auth;
+use Mail;
 use papeleria\Cart;
 use Illuminate\Support\Facades\DB;
 use papeleria\Http\Requests\ValidarCarritoRequest;
@@ -27,8 +28,8 @@ class NormalController extends Controller {
 
 		$this->middleware('auth');
 		$count = Cart::get();
-    	\View::share('count', $count);
-    	
+		\View::share('count', $count);
+
 		/*guest sirve para cuando NO este logueado todos puedan ver las view
 		y auth sirve para cuando este logueado solo los usuarios registrados puedan ver las views*/
 	}
@@ -36,8 +37,8 @@ class NormalController extends Controller {
 
 	public function index_info(){
 
-		$user = Auth::User();     
-        $id = $user->id;
+		$user = Auth::User();
+		$id = $user->id;
 
 		$user = \DB::table('users')
 		/**/
@@ -52,7 +53,7 @@ class NormalController extends Controller {
 	}
 
 	public function search2(Request $request){
-		
+
 		$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(12);
 		return view('catalogo_n')->with('products', $products);
 	}
@@ -65,27 +66,41 @@ class NormalController extends Controller {
 	public function create(ValidarCarritoRequest $request)
 	{
 
-		$user = Auth::User();     
-        $id = $user->id;
+		$user = Auth::User();
+		$id = $user->id;
 
 		$products = new Pedidos;
-
 		$products->user_id = $id;
 		$products->status = '0';
+
 		$cart = Cart::get();
 		$products->precio_total = $cart->total();
 		$products->total_products = $cart->count();
-        $products->articulos = json_encode($cart->products());
-        $products->email_user = 'luigidanny@hotmail.com';
-        $products->details = Input::get('details');
-		
-		return Redirect('/desktop/pedidos')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
+		$products->articulos = json_encode($cart->products());
+		$products->email_user = 'luigidanny@hotmail.com';
+		$products->details = Input::get('details');
+
+		$products->save();
+
+		$datos = [
+		  'products' => $cart->products(),
+		];
+
+		$cart->reset();
+
+		Mail::send('emails.send', $datos, function($mail) {
+			$mail->to('luigidanny@hotmail.com');
+			$mail->subject('Pedido de Ofimedia Papeleria');
+			$mail->from('ticonsultoresmzo@hotmail.com');
+		});
+
+		return redirect('/home')->with('alert', 'Pedido Creado');
 	}
 
 	public function pedidos_normal(){
 
-		$user = Auth::User();     
-        $id = $user->id;
+		$user = Auth::User();
+		$id = $user->id;
 
 		$empresa = \DB::table('pedidos')
 		/**/
@@ -94,14 +109,14 @@ class NormalController extends Controller {
 		->join('users', 'users.id', '=', 'pedidos.user_id')
 		->orderby('PedidoID','DESC')
 		->paginate(15);
-		
-		return view('pedidos_n')->with('empresa', $empresa);	
+
+		return view('pedidos_n')->with('empresa', $empresa);
 	}
 
 	public function catalogo_normal(){
 
 		$products = products::orderBy('id', 'asc')->paginate(25);
-		return view('catalogo_n')->with('products', $products);	
+		return view('catalogo_n')->with('products', $products);
 	}
 
 	/**
@@ -110,7 +125,7 @@ class NormalController extends Controller {
 	 * @return Response
 	 */
 	public function store($id){
-		
+
 		//
 	}
 
@@ -133,7 +148,7 @@ class NormalController extends Controller {
 
 		$pedido3 = pedidos::find($id);
 		$productos = json_decode($pedido3->articulos);
-		
+
 		return view('pedido_show')->with('pedido', $pedido)->with('productos', $productos);
 	}
 
