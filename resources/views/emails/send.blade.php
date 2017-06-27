@@ -18,13 +18,15 @@
     		</tr>
     	</thead>
     	<tbody>
-    		<tr>
-    			<td>{{ $sku }}</td>
-    			<td>{{ $nombre }}</td>
-                <td>{{ $precio_u }}</td>
-                <td>{{ $cantidad }}</td>
-    			<td>{{ $total }}</td>
-    		</tr>
+            @foreach ($products as $product)
+        		<tr>
+        			<td>{{ $product['sku'] }}</td>
+        			<td>{{ $product['nombre'] }}</td>
+                    <td>{{ $product['precio_unitario'] }}</td>
+                    <td>{{ $product['cantidad'] }}</td>
+        			<td>{{ $product['subtotal'] }}</td>
+        		</tr>
+            @endforeach
     	</tbody>
     </table>
 </body>
