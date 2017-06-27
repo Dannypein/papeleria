@@ -326,7 +326,7 @@ class AdminController extends Controller {
 		$products->type = Input::get('type');
 		$products->available = strtolower(Input::get('available'));
 		$products->category = Input::get('category');
-		$products->stock = Input::get('stock');
+		/*$products->stock = Input::get('stock');*/
 		$products->details = Input::get('details');
 
 		if ($imagen = Input::file('file')) {
@@ -352,7 +352,7 @@ class AdminController extends Controller {
 		$products->type = Input::get('type');
 		$products->available = strtolower(Input::get('available'));
 		$products->category = Input::get('category');
-		$products->stock = Input::get('stock');
+		/*$products->stock = Input::get('stock');*/
 		$products->details = Input::get('details');
 		$products->save();
 

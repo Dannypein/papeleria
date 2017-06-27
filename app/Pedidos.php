@@ -20,7 +20,7 @@ class Pedidos extends Model {
 
 
 	public static function scopePendientes($query) {
-	  return $query->where('status', 1);
+	  return $query->where('status', 0);
   }
 
 }
