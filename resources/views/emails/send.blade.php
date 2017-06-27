@@ -18,13 +18,15 @@
     		</tr>
     	</thead>
     	<tbody>
+        @foreach($datos as $d)
     		<tr>
-    			<td>{{ $sku }}</td>
-    			<td>{{ $nombre }}</td>
-                <td>{{ $precio_u }}</td>
-                <td>{{ $cantidad }}</td>
-    			<td>{{ $total }}</td>
+    			<td>{{ $d->sku }}</td>
+    			<td>{{ $d->nombre }}</td>
+                <td>{{ $d->precio_u }}</td>
+                <td>{{ $d->cantidad }}</td>
+    			<td>{{ $d->total }}</td>
     		</tr>
+        @endforeach
     	</tbody>
     </table>
 </body>

@@ -79,23 +79,18 @@ class NormalController extends Controller {
         $products->articulos = json_encode($cart->products());
         $products->email_user = 'luigidanny@hotmail.com';
         $products->details = Input::get('details');
+        $products->save();
+        $cart->reset();
         
-        $datos = json_decode($products->articulos);
-        $datos1 = array(
-        	'sku' => $products->sku,
-        	'nombre' => $products->nombre,
-        	'precio_u' => $products->precio_unitario,
-        	'cantidad' => $products->cantidad,
-        	'total' => $products->precio_total,
-        );
+        $datos = $cart->products();
 
-       Mail::send('emails.send', $datos1, function($mail) {
+       Mail::send('emails.send', $datos, function($mail) {
 	      $mail->to('luigidanny@hotmail.com');
 	      $mail->subject('Pedido de Ofimedia Papeleria');
 	      $mail->from('ticonsultoresmzo@hotmail.com');
 	    });
 		
-		return Redirect('/home')->with($products->save(),$cart->reset())->with('alert', 'Pedido Creado');
+		return Redirect('/home')->with('alert', 'Pedido Creado');
 	}
 
 	public function pedidos_normal(){
