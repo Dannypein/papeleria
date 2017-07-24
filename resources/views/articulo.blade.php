@@ -46,8 +46,12 @@
                             <div class="well" style="background-color: #eee"><h5>{{$details->name}}</h5></div>
                                 <div class="col-md-6">
                                     <ul class="list-group">
-                                        <li class="list-group-item"><b>Unidad:</b>&nbsp{{$details->unit}}</li>
+                                    @if(Auth::check())
                                         <li class="list-group-item"><b>Precio:&nbsp</b>$&nbsp{{$details->price}}</li>
+                                    @else
+                                        <li class="list-group-item"><b>Precio:&nbsp</b>$&nbspDebe estar registrado</li>
+                                    @endif
+                                        <li class="list-group-item"><b>Unidad:</b>&nbsp{{$details->unit}}</li>
                                         <li class="list-group-item"><b>SKU:</b>&nbsp{{$details->sku}}</li>
                                         <li class="list-group-item"><b>Presentación:</b>&nbsp1{{$details->type}}</li>
                                     </ul>

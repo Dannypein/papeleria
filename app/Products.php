@@ -29,6 +29,7 @@ class products extends Model {
     $data = [
       'sku'         => data_get($row, 'clave'),
       'name'        => array_get($row, 'descripcion'),
+      'price'        => array_get($row, 'precio'),
       'model'       => array_get($row, 'modelo'),
       'size'        => array_get($row, 'talla'),
       'stock'   => array_get($row, 'existencias'),

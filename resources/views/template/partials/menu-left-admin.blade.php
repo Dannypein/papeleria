@@ -1,5 +1,5 @@
 <div class="col-md-3">
-	<p class="lead list-group-item"><b>Papeleria</b></p>
+	<p class="lead list-group-item" style="background-color: #eee"><b>Papeleria</b></p>
 	<div class="list-group">
 		<a href="{{route('empresa')}}" class="list-group-item"><b>Empresas</b></a>
 	    <a href="{{route('usuarios')}}" class="list-group-item"><b>Usuarios</b></a>

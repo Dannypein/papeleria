@@ -21,13 +21,15 @@
                     <div class="col-md-8" style="background-color: white; font-weight: bold; font-size: 1.2em;">
                         <h3>Detalles de Contacto</h3>
                         <p>
-                            Avenida Primaveras <br>N° 5<br>
-                        </p>
+                           <i class="fa fa-map-marker" aria-hidden="true"></i>
+                           <abbr title="Email">Direccion</abbr>:  Avenida Primaveras <br>N° 5<br></p>
+
                         <p><i class="fa fa-phone"></i> 
                             <abbr title="Phone">Telefono</abbr>: (01-314) 333-4810</p>
+
                         <p><i class="fa fa-envelope-o"></i> 
-                            <abbr title="Email">Email</abbr>: <a href="">arlene.ventas@ofimedia.com.mx</a>
-                        </p>
+                            <abbr title="Email">Email</abbr>: <a href="">arlene.ventas@ofimedia.com.mx</a></p>
+
                         <p><i class="fa fa-clock-o"></i> 
                             <abbr title="Hours">Horario</abbr>: Lunes - Viernes: 9:00 AM A 2:00 PM y 4:00 PM A 7:00 PM
                             / Sabado: 9:00 AM A 2:00 PM</p>
@@ -50,9 +52,9 @@
                 <!-- /.row -->
                 <!-- Contact Form -->
                 <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-                <div class="col-md-12">
-                <br>
-                <br>
+                <div class="col-md-12" style="padding-bottom: 5em;">
+                    <br>
+                    <br>
                     <div class="col-md-3"></div>
                     <div class="col-md-6"  style="background-color: white;">
                         <h3>¡Mandanos un mensaje!</h3>

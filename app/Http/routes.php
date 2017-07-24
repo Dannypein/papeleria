@@ -243,8 +243,8 @@ Route::post('/contacto/correo', [
 ]);
 
 Route::post('/desktop/pedidos/renviar/{id}', [
-	'as'   => 'contacto.send',
-	'uses' => 'ContactoController@send'
+	'as'   => 'contacto.remit',
+	'uses' => 'ContactoController@remit'
 ]);
 
 

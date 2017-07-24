@@ -1,5 +1,5 @@
 <div class="col-md-3">
-	<p class="lead list-group-item"><b>Busqueda Avanzada</b></p>
+	<p class="lead list-group-item" style="background-color: #eee"><b>Busqueda Avanzada</b></p>
 	<div class="list-group">
 	    <a class="list-group-item">
 	    	<div class="input-group">

@@ -4,6 +4,7 @@ use papeleria\Http\Requests;
 use papeleria\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use papeleria\Cart;
+use papeleria\Pedidos;
 
 class ContactoController extends Controller {
 
@@ -28,7 +29,7 @@ class ContactoController extends Controller {
 	    \Mail::send('emails.contacto', $datos, function($mail) {
 	      $mail->to('luigidanny@hotmail.com');
 	      $mail->subject('Contacto desde Ofimedia Papeleria');
-	      $mail->from('ticonsultoresmzo@hotmail.com');
+	      $mail->from('ofimedia_mzo_cntacto@outlook.com');
 	    });
 
 	    return view('contacto', ['enviado' => true]);
@@ -40,14 +41,28 @@ class ContactoController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function send(Request $peticion)
-	{
-		$datos = $peticion->except('_token');
+	public function remit($id){
 
-	    \Mail::send('emails.send', $datos, function($mail) {
+		$pedido = \DB::table('pedidos')
+		/**/
+		->where('pedidos.id', $id)
+		->select('pedidos.id as PedidoID', 'pedidos.created_at as Pcreate', 'pedidos.*', 'users.*', 'company.*', 'departments.*')
+		->join('users', 'users.id', '=', 'pedidos.user_id')
+		->join('company', 'company.id', '=', 'users.company_id')
+		->join('departments', 'departments.id', '=', 'users.department_id')
+		->get();
+		
+		$pedido3 = pedidos::find($id);
+		$products = json_decode($pedido3->articulos);
+		$datos = [
+		  'products' => $products,
+		  'pedido' => $pedido,
+		];
+
+	    \Mail::send('emails.remit', $datos, function($mail) {
 	      $mail->to('luigidanny@hotmail.com');
 	      $mail->subject('Pedido de Ofimedia Papeleria');
-	      $mail->from('ticonsultoresmzo@hotmail.com');
+	      $mail->from('ofimedia_mzo_cntacto@outlook.com');
 	    });
 
 	    return Redirect('/desktop/pedidos')->with('alert', 'Pedido Enviado');

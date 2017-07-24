@@ -1,7 +1,7 @@
 <footer>
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="background-color: rgba(238,238,238,0.3);">
         <hr>
-        <p>Copyright &copy; Ofimedia Papeleria, 2017</p>
+        <p><b>Copyright &copy; Ofimedia Papeleria, 2017</b></p>
         <div class="col-md-4">
         <hr>
         	<p><b style="font-size: 1.1em">Sucursal Colima</b></p>

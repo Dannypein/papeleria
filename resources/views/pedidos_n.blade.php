@@ -55,6 +55,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <?php echo $empresa->render() ?>
                 </div>
             </main>
         </div>

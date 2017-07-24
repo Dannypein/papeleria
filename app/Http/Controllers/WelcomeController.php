@@ -59,7 +59,7 @@ class WelcomeController extends Controller {
 
 	public function search(Request $request){
 		
-		$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(12);
+		$products = Products::name($request->get('name'))->orderBy('id', 'asc')->paginate(50);
 		return view('welcome')->with('products', $products);
 	}
 

@@ -4,7 +4,7 @@
 </head>
 <body>
     <div style="padding: 2.5em; width: 90%;">
-        <h1>Nuevo Pedido de Ofimedia Papeleria</h1>
+        <h1>Pedido Reenviado de Ofimedia Papeleria</h1>
         <h2>Datos del Pedido: </h2>
     </div>
     <div>
@@ -17,6 +17,7 @@
                 <th>Empresa</th>
                 <th>Departamento</th>
                 <th>Fecha de Creacion</th>
+                <th>Estatus</th>
               </tr>
             </thead>
             <tbody>
@@ -28,6 +29,11 @@
                     <td>{{$p->name_company}}</td>
                     <td>{{$p->department}}</td>
                     <td>{{$p->Pcreate}}</td>
+                    @if($p->status < 1)
+                        <td class="danger">Pendiente</td>
+                    @elseif($p->status > 0)
+                        <td class="success">Entregado</td>
+                    @endif
                 </tr>
              @endforeach
             </tbody>
@@ -43,19 +49,26 @@
     			<th>Nombre</th>
     			<th>Precio Unitario</th>
                 <th>Cantidad</th>
-    			<th>Total</th>
+    			<th>Sub_Total</th>
     		</tr>
     	</thead>
     	<tbody>
-            @foreach ($products as $product)
-        		<tr>
-        			<td>{{ $product['sku'] }}</td>
-        			<td>{{ $product['nombre'] }}</td>
-                    <td>{{ $product['precio_unitario'] }}</td>
-                    <td>{{ $product['cantidad'] }}</td>
-        			<td>{{ $product['subtotal'] }}</td>
-        		</tr>
+    		@foreach ($products as $product)
+                <tr>
+                    <td>{{ $product->sku }}</td>
+                    <td>{{ $product->nombre }}</td>
+                    <td>{{ $product->precio_unitario }}</td>
+                    <td>{{ $product->cantidad }}</td>
+                    <td>{{ $product->subtotal }}</td>
+                </tr>
             @endforeach
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             <tr>
                 <td></td>
                 <td></td>

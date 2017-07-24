@@ -5,9 +5,9 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Iniciar Sesión</div>
-				<div class="panel-body">
+			<div class="panel panel-default" style="box-shadow: 10px 10px 5px #888888;">
+				<div class="panel-heading" style="background-color: #607D8B; color: white">Iniciar Sesión</div>
+				<div class="panel-body" style="background-image: url('/img/patern.png'); color: white">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
 							<strong>Whoops!</strong> Hubo algunos problemas con su entrada.<br><br>
@@ -25,14 +25,14 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Dirección de E-Mail</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								<input style="color: white;" type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="col-md-4 control-label">Contraseña</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								<input style="color: white;" type="password" class="form-control" name="password">
 							</div>
 						</div>
 

@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style=" height: 225.5px">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-rocket" aria-hidden="true"></i> Mision</h4>
                             </div>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style=" height: 225.5px">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-eye" aria-hidden="true"></i> Vision</h4>
                             </div>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" style=" height: 225.5px">
                             <div class="panel-heading">
                                 <h4><i class="fa fa-shield" aria-hidden="true"></i> Valores</h4>
                             </div>

@@ -7,9 +7,17 @@
     	<div class="row">
     	@include('template.partials.menu')
     		<main>
+                @if(\Session::has('alert'))
+                    <div class="col-md-12">
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert"><i class="fa fa-close"></i></button>
+                            <strong>{{Session::get('alert')}}</strong>
+                        </div>
+                    </div>
+                @endif
     			@include('template.partials.menu-left')
     			<div class="col-md-9">
-                    <img class="img-responsive" src="{{asset('/img/ofimedia.png')}}" alt="">
+                    <img class="img-responsive" src="{{asset('/img/ofimedia.png')}}" alt="imagen principal" style="padding-bottom: 2.5em;">
                         <!--<div class="row carousel-holder">
                             <div class="col-md-12">
                                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -45,8 +53,12 @@
                                 <div class="thumbnail" style="height: 100%;">
                                     <img style="height: 25vh;" src="{{asset('img/products/' . $p->id . '.jpg') }}" alt="">
                                     <div class="caption">
+                                    @if(Auth::check())
                                         <h4 class="pull-center">$&nbsp{{$p->price}}</h4>
-                                        <p style="font-weight: bold; font-size: 100%;" align="justify">{{$p->name}}</p>
+                                    @else
+                                        <p class="pull-center">$&nbspDebe estar registrado</p>
+                                    @endif
+                                        <p style="font-weight: bold; font-size: 100%;" align="justify">{{str_limit($p->name, $limit = 47, $end = '...')}}</p>
                                         <p>SKU:&nbsp{{$p->sku}}</p>
                                         <p>
                                             <a href="{{route('articulo', [$p->id])}}" class="btn btn-primary">Ver producto</a>

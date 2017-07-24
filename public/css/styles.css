@@ -13,7 +13,7 @@ body {
 
 footer{
 	min-height: 20vh;
-	background-color: #3f51b5;
+	/*background-color: #3f51b5;*/
 	width: 100%;
 	color: white;
 	/*opacity: 0.5;
@@ -33,6 +33,7 @@ main{
 	position: relative;
 	height: 100vh;
 	background-color: #3f51b5;
+	background-image: url('/img/patern.png');
 	/*background-image: url(/img/fondo.jpg);*/
 	padding-right: 0px;
 	padding-left: 0px;
@@ -41,6 +42,10 @@ main{
 .content {
 	text-align: center;
 	display: inline-block;
+}
+
+.panel-heading{
+	background-color: #78909C !important;
 }
 
 .title {
@@ -56,6 +61,11 @@ main{
 
 .navbar{
 	border-radius: 0px;
+	background-color: #fff; 
+	background-image: 
+	linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+	linear-gradient(#eee .1em, transparent .1em);
+	background-size: 100% 1.2em;
 }
 
 /*----Este estilo esta en articulo----*/
